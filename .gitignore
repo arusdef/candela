@@ -41,3 +41,5 @@ Icon
 /content/*
 /assets/fonts/*
 /vendor/*
+
+!composer.lock
