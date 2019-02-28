@@ -1,0 +1,56 @@
+title: Section
+preset: page
+files: true
+pages: false
+fields:
+  sectionsubtitle:
+    label: Section Subtitle
+    type: text
+  sectionsize:
+    label: Section Size
+    type: radio
+    options:
+      half: 1/2 Width
+      full: Full Width
+    default: full
+    width: 1/2
+  sectionpinned:
+    label: Mobile Preview Image
+    type: files
+    width: 1/2
+    multiple: false
+  sectionpreview:
+    label: Desktop Preview Images
+    type: files
+    multiple: true
+    max: 9
+  sectionslides:
+    label: Section Slides
+    type: structure
+    fields:
+      selectcontent:
+        label: Content to Show
+        type: radio
+        width: 1/2
+        options: 
+          textimage: Text Left, Image Right
+          imagetext: Image Left, Text Right
+          text:  Text, Center
+          image:  Image, Center
+          video: Video, Center
+      textualcontent:
+        label: Textual Content
+        type: textarea
+        size: medium
+      videocontent:
+        label: Vimeo Id
+        type: text
+      imagecontent:
+        label: Image
+        type: files
+        multiple: false
+        width: 1/3
+      imagecaption:
+        label: Caption
+        type: text
+        width: 2/3
