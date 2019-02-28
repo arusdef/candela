@@ -1,3 +1,4 @@
+	</div>
 	</main>
 	<?php snippet('popup', ['show' => '']) ?>	
 	<footer>

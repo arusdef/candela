@@ -192,7 +192,6 @@ h1{
 	background-image: linear-gradient(to right, rgba(255,255,255,1) , rgba(255,255,255,0));
 }
 
-
 .desktop_preview{
 	height: calc(9vh - 0.2875vw);
 	padding-left: 1rem;

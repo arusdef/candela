@@ -9,6 +9,13 @@
 
 	<?php snippet('metatags') ?>
 	<?= css('assets/main.css') ?>
+	<?= js([
+	  'assets/js/jquery-3.3.1.min.js',
+	  'assets/js/barba.min.js',
+	  'assets/js/TweenMax.min.js',
+	  'assets/js/flickity.pkgd.min.js',
+	  'assets/js/script.js'
+	]) ?>
 
 </head>
 <body>
@@ -21,4 +28,4 @@
 	<a class="header_section" id="logomark" href="<?= $site->url() ?>"></a>
 </header>
 <main>
-	
+	<div id="barba-wrapper">
