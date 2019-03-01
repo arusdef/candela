@@ -39,7 +39,7 @@ header{
 #temp h3{
 	box-sizing: border-box;
 	width: 100%;
-	padding-left: 2rem;
+	padding-left: 1.5rem;
 	padding-right: 2rem;
 	font-family: arial, sans;
 	font-size: 0.6rem;
@@ -106,12 +106,12 @@ footer{
 .footer_section:first-of-type{
 	border-right: 1px solid #ADAAAD;
 	text-align: left;
-	padding-left: 1rem;
+	padding-left: 1.5rem;
 }
 
 .footer_section:last-of-type{
 	text-align: right;
-	padding-right: 1rem;
+	padding-right: 1.5rem;
 }
 
 .footer_section:nth-of-type(3){
@@ -132,6 +132,7 @@ main{
 	top: calc(12.5vh - 0.2875vw);
 	left: 0;
 	width: 100%;
+	font-size: 0;
 }
 
 main .sliver{
@@ -175,11 +176,16 @@ a.sliver{
 
 h1{
 	position: absolute;
-	left: 1rem;
+	left: 1.5rem;
 	color: #424142;
 	font-size: 0.88rem;
 	font-weight: normal;
 	z-index: 100;
+}
+
+h1 .section_subtitle{
+	font-family: arial, sans;
+	text-transform: uppercase;
 }
 
 .gradient{
@@ -193,21 +199,34 @@ h1{
 }
 
 .desktop_preview{
-	height: calc(9vh - 0.2875vw);
-	padding-left: 1rem;
-	padding-right: 1rem;
+	position: absolute;
+	top: 0;
+	left: 18vw;
+	height: calc(12.5vh - 0.2875vw);
+	padding-left: 1.5rem;
+	padding-top: 1.75vh;
+	padding-right: 1.5rem;
 	overflow-y: hidden;
 	overflow-x: hidden;
 }
 
-.sliver.width_half .desktop_preview{
+.desktop_preview.lots_of_images{
+	left: 0;
+}
+
+.sliver.width_half .desktop_preview, .sliver.width_half .desktop_preview.lots_of_images{
 	text-align: right;
+	left: auto;
+	right: 0;
 }
 
 .desktop_preview img{
 	object-fit: contain;
 	filter: saturate(1%);
+	margin-bottom: 5rem;
 	height: calc(9vh - 0.2875vw);
+	margin-left: 0.25rem;
+	margin-right: 0.25rem;
 }
 
 /* pop up */
@@ -225,3 +244,188 @@ h1{
 #vimeo_video.show{
 	display: block;
 }
+
+
+/* SECTION PAGE */
+
+#section_page{
+	font-size: 0;
+}
+
+.candela_section{
+	box-sizing: border-box;
+	overflow: hidden;
+	border-bottom: 1px solid #ADAAAD;
+}
+
+.candela_section.small_section:last-of-type{
+	border-bottom: none;	
+}
+
+.current_section{
+	position: relative;
+	font-size: 1rem;
+	display: block;
+	width: 100%;
+	overflow: hidden;
+	height: calc(70vh - 0.2875vw);
+}
+
+.current_section h1{
+	position: relative;
+	left: auto;
+	padding-left: 1.5rem;
+	padding-top: 1rem;
+	font-size: 0.88rem;
+	font-weight: normal;
+	font-family: TimesNewRoman, serif;
+}
+
+h2.slide_counter{
+	padding-left: 1.5rem;
+	font-family: arial, sans;
+	font-size: 1rem;
+	line-height: 2.3vw;
+	text-transform: uppercase;
+	font-weight: normal;
+}
+
+.section_carousel{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 60vh;
+	width: 100%;
+}
+
+.section_carousel:focus { 
+  outline-width: 0;
+  outline: none;
+}
+
+.button{
+	z-index: 10000000000000;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin-top: auto;
+	margin-bottom: auto;
+	cursor: pointer;
+	width: 1rem;
+	height: 1rem;
+	border-radius: 0.5rem;
+	background-color: #1C1C1C;
+}
+.button:hover{ transform: scale(1.1); }
+.button:active{ transform: scale(1); }
+.button.next{ right: 1rem; }
+.button.previous{	left: 1rem; }
+
+.section_carousel_cell{
+	height: 60vh;
+	width: 100%;
+	text-align: center;
+}
+
+.slide_single_column{
+	display: block;
+	width: 80%;
+	margin: 0 auto;
+}
+
+
+.slide_single_column.column_text p{
+	text-align: left;
+	margin: 0 auto;
+	margin-bottom: 1rem;
+	width: 37.5%;
+
+}
+
+.slide_single_column img{
+	width: 100%;
+	object-fit: contain;
+	max-height: 50vh;
+	width: 100%;
+	object-position: center top;
+}
+
+.slide_column{
+	display: inline-block;
+	width: 50%;
+	text-align: left;
+	vertical-align: top;
+}
+
+.slide_column.column_text{
+	width: 30%;
+}
+
+.column_text h2{
+	text-transform: uppercase;
+	font-size: 1rem;
+	line-height: 2.3vw;
+	font-family: arial, sans;
+	font-weight: normal;
+	margin-bottom: 0.75rem;
+}
+
+.slide_column.column_text p{
+	margin-bottom: 1rem;
+}
+
+.slide_column.column_image{
+	width: 50%;
+}
+
+.slide_column img{
+	object-fit: contain;
+	max-height: 50vh;
+	width: 100%;
+}
+
+img.image_left{
+	object-position: left top;
+}
+
+img.image_right{
+	object-position: right top;
+}
+
+.caption_left{
+	text-align: left;
+}
+
+.caption_right{
+	text-align: right;
+}
+
+
+
+/* minimized sections */
+a.small_section{
+	font-size: 0.72rem;
+	line-height: calc(2.9vh - 0.2875vw);
+	text-decoration: none;
+	height: calc(2.9vh - 0.2875vw);
+}
+
+.small_section h3{
+	font-size: 0.72rem;
+	font-weight: normal;
+	padding-left: 1.5rem;
+	line-height: calc(2.9vh - 0.2875vw);
+}
+
+.small_section.width_full{
+	display: block;
+	width: 100%;
+}
+
+.small_section.width_half{
+	display: inline-block;
+	width: 50%;
+	border-right: 1px solid #ADAAAD;
+	
+}
+

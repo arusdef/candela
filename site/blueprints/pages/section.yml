@@ -38,6 +38,11 @@ fields:
           text:  Text, Center
           image:  Image, Center
           video: Video, Center
+        default: textimage
+        required: true
+      textualtitle:
+        label: Textual Title
+        type: text
       textualcontent:
         label: Textual Content
         type: textarea

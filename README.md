@@ -4,12 +4,18 @@ Site by Íñigo Lopez and Lukas Eigler-Harding
 
 
 ## to do
-- [ ] backend forms
+- [x] backend forms
 	- [ ] accounts
 - [ ] panel install online
 - [ ] front end dev
 - [ ] letsencrypt https
 
+
+## build
+- [ ] candela wordmark breakpoints
+- [ ] page transitions
+- [ ] section front-end build out
+- [x] image resizing
 
 ## approach
 
