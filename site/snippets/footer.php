@@ -1,6 +1,9 @@
 	</div>
 	</main>
-	<?php snippet('popup', ['show' => '']) ?>	
+	<?php $pagecount = ($site->index()->published()->filterBy('template', 'section')->count() == 6 ? 'seven' : '');  ?>
+	<?php $show = ($site->trailerpopup() == 'true') ? 'show' : ' '; ?>
+	<?php snippet('popup', ['show' => $show, 'pagecount' => $pagecount]) ?>
+	<?php snippet('contact', ['pagecount' => $pagecount]) ?>
 	<footer>
 		<?php if($site->contactvisibility()): ?>
 		<div id="contact_tab" class="footer_section"><?= $site->contacttitle()->html() ?></div>	

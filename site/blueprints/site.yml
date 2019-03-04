@@ -80,7 +80,6 @@ columns:
           trailerpopup:
             label: Pop up
             type: toggle
-            default: true
             text:
               - Pop-up on click
               - Load Pop-up

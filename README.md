@@ -13,13 +13,14 @@ Site by Íñigo Lopez and Lukas Eigler-Harding
 
 ## build
 - [ ] candela wordmark breakpoints
-- [ ] temperature api integration
-- [ ] candela logo animation
-- [ ] video section
-- [ ] video pop up
-- [ ] brochure button
-- [ ] contact
 - [ ] mobile
+- [ ] candela logo animation
+- [ ] brochure button
+- [x] video section
+- [x] caption alignment
+- [x] video pop up
+- [x] contact
+- [x] temperature api integration
 - [x] thumbnail hovering
 - [x] to section nav movement
 - [x] inter-section nav movement
@@ -32,8 +33,8 @@ Site by Íñigo Lopez and Lukas Eigler-Harding
 
 ## extra dev
 - [ ] magnified image seems wrong
-- [ ] image captions? 
-- [ ] contact forms
+- [ ] image captions size? 
+- [ ] contact forms (prefer just a sign-up at most)
 - [ ] 3 column seems too much? (i can offer two column images)
 
 ## approach

@@ -6,6 +6,69 @@ var Site = {};
 Site.targetPage = "";
 Site.loaded = false;
 
+Site.weather = function(){
+	$.ajax({
+	  url: "http://api.openweathermap.org/data/2.5/weather?lat=20.21&lon=-87.49&appid=2ef957d7223cdcc456536d6972b9f272",
+	  dataType: "json"
+	}).done(function(results) {
+
+	  var kelvin = results.main.temp,
+	  		celsius = Math.round(kelvin - 273.15),
+	  		fahrenheit = Math.round((celsius * (9/5)) + 32), 
+	  		weathericonId = results.weather[0].icon,
+	  		idOptions = ["01d", "01n", "02d", "02n", "800"];
+
+	  if(idOptions.includes(weathericonId)){ // append sun icon
+	  	$("#temp").find("h3").removeClass("cloudy")
+	  }
+	  TweenMax.to($(".current_temp"), 0.2, {opacity: 1})
+	  $("#fahrenheit").html(fahrenheit + "º ").addClass("active")
+	  $(".current_temp").on('click', function(){
+	  	$(".temperature_display").toggleClass("active")
+  		if($("#celsius").hasClass("active")){
+  			$("#celsius").html(" " + celsius + "º ")
+  			$("#fahrenheit").html("")
+  		}else if($("#fahrenheit").hasClass("active")){
+  			$("#fahrenheit").html(fahrenheit + "º ")
+  			$("#celsius").html("")
+  		}
+	  })
+	});
+}
+
+Site.footer = function(){
+	// contact
+	$("#contact_tab").on('click', function(){
+		$(this).toggleClass("active")
+		$("#contact_section").toggleClass('active')
+		$("#trailer_tab").removeClass("active")
+		$("#vimeo_video").removeClass("show")
+		$("main").removeClass("video")
+	})
+
+	// trailer on load
+	if($("#vimeo_video").hasClass("show")){
+		$("#trailer_tab").addClass("active")
+		setTimeout(function(){
+			$("main").addClass("video")	
+		}, 1000)
+		TweenMax.to($("#vimeo_video"), 0.4, {opacity: 1, delay: 1, onComplete: function(){
+				$("#vimeo_video").addClass("revealed")
+			}
+		})
+	}
+
+	// trailer
+	$("#trailer_tab, #exit_video").on('click', function(){
+		$("#contact_tab, #contact_section").removeClass('active')
+		$("#trailer_tab").toggleClass("active")
+		$("#vimeo_video").toggleClass("show")
+		$("#vimeo_video").toggleClass("revealed")
+		$("main").toggleClass("video")
+
+	})
+}
+
 // basic barba:
 Site.homepage = Barba.BaseView.extend({
   namespace: 'home_page',
@@ -22,8 +85,6 @@ Site.homepage = Barba.BaseView.extend({
     }else{ // if visiting the homepage through another page of the site	
     	TweenMax.to($(".fader"), 0.3, {opacity: 0, ease: Power4.easeIn})
     }
-
-
 
     $("a").on('click', function(){
 			Site.targetPage = (($(this).attr("id") != null || $(this).attr("id") != undefined)? $(this).attr("id") : "");
@@ -190,6 +251,10 @@ window.onload = function(){
 	Site.section.init();
 	Barba.Pjax.start();
 	Site.loaded = true; //update site session status
+
+	// Site.weather();
+	Site.footer();
+
 
 	Barba.Pjax.getTransition = function() {
 		var currentPage = $(".barba-container").attr("id");

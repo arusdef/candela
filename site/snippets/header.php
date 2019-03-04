@@ -42,7 +42,11 @@
 
 <header class="sliver <?= $pagecount ?>">
 	<div class="header_section" id="temp">
-		<h3 class="">Current Temperature in Tulum</h3>
+		<h3 class="cloudy">Current Temperature in Tulum
+			<span class="current_temp">
+				<span class="temperature_display" id="fahrenheit"></span> / <span class="temperature_display" id="celsius"></span>
+		</span>
+		</h3>
 	</div>
 	<a class="header_section" id="wordmark" href="<?= $site->url() ?>"></a>
 	<a class="header_section" id="logomark" href="<?= $site->url() ?>"></a>
