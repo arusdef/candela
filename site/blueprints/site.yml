@@ -117,7 +117,7 @@ columns:
             label: File for Displaying
             type: files
             multiple: false
-            query: site.images
+            query: site.files
 
           seosection:
             label: SEO Section

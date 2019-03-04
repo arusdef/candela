@@ -1,5 +1,5 @@
 <?php snippet('header') ?>
-	<div class="barba-container" id="section_page" data-namespace="section_page" >
+	<div class="barba-container <?= $page->title()->slug() ?>" id="section_page" data-namespace="section_page" >
 		<?php 
 			foreach ($site->index()->filterBy('template', 'section') as $section): 
 				if($section->title() == $page->title()): 

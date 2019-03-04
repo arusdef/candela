@@ -1,4 +1,5 @@
 <section class="candela_section current_section">
+	<div class="sub_fader"></div>
 	<h1><?= $section->title()->html()
 		?><?php if($section->sectionsubtitle()->isNotEmpty()): 
 				?>: <span class="section_subtitle"><?= $section->sectionsubtitle()->html() ?></span>

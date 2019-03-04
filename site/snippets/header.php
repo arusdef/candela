@@ -17,15 +17,35 @@
 	  'assets/js/script.js'
 	]) ?>
 
+	<noscript>
+		<style type="text/css">
+			.fader{
+				opacity: 0;
+			}
+
+			.candela_section{
+				opacity: 1;
+			}
+
+			.sub_fader{
+				opacity: 0;
+			}
+
+		</style>
+
+	</noscript>
+
 </head>
 <body>
 
-<header class="sliver">
+<?php $pagecount = ($site->index()->published()->filterBy('template', 'section')->count() == 6 ? 'seven' : ''); ?>
+
+<header class="sliver <?= $pagecount ?>">
 	<div class="header_section" id="temp">
 		<h3 class="">Current Temperature in Tulum</h3>
 	</div>
 	<a class="header_section" id="wordmark" href="<?= $site->url() ?>"></a>
 	<a class="header_section" id="logomark" href="<?= $site->url() ?>"></a>
 </header>
-<main>
+<main class="<?= $pagecount ?>">
 	<div id="barba-wrapper">

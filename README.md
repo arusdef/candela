@@ -5,17 +5,36 @@ Site by Íñigo Lopez and Lukas Eigler-Harding
 
 ## to do
 - [x] backend forms
-	- [ ] accounts
-- [ ] panel install online
+	- [x] accounts
+- [x] panel install online
 - [ ] front end dev
-- [ ] letsencrypt https
+- [x] letsencrypt https
 
 
 ## build
 - [ ] candela wordmark breakpoints
-- [ ] page transitions
-- [ ] section front-end build out
+- [ ] temperature api integration
+- [ ] candela logo animation
+- [ ] video section
+- [ ] video pop up
+- [ ] brochure button
+- [ ] contact
+- [ ] mobile
+- [x] thumbnail hovering
+- [x] to section nav movement
+- [x] inter-section nav movement
+- [x] alt sizes for sections display amount
 - [x] image resizing
+- [x] superscript + h6 superscript
+- [x] ordered list styling
+- [x] unordered list styling
+- [x] image resizing
+
+## extra dev
+- [ ] magnified image seems wrong
+- [ ] image captions? 
+- [ ] contact forms
+- [ ] 3 column seems too much? (i can offer two column images)
 
 ## approach
 
