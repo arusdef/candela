@@ -36,7 +36,21 @@ Site.weather = function(){
 	});
 }
 
+
+Site.bottomPosition = function(footer){
+	if($(window).outerWidth() < 768){
+		// mobile screen
+		var innerHeight = $(window).innerHeight()
+		footer.css({ "top" : innerHeight - footer.outerHeight() + "px", "bottom" : "auto"})
+	}else{
+		return
+	}
+}
+
 Site.footer = function(){
+	
+	// Site.bottomPosition($("footer"));
+
 	// contact
 	$("#contact_tab").on('click', function(){
 		$(this).toggleClass("active")
@@ -59,7 +73,7 @@ Site.footer = function(){
 	}
 
 	// trailer
-	$("#trailer_tab, #exit_video").on('click', function(){
+	$("#trailer_tab, #exit_video, .mobile_trailer").on('click', function(){
 		$("#contact_tab, #contact_section").removeClass('active')
 		$("#trailer_tab").toggleClass("active")
 		$("main").toggleClass("video")
@@ -117,6 +131,9 @@ Site.section = Barba.BaseView.extend({
   	var $carousel = $('.section_carousel');
 
   	if(window.innerWidth > 768){
+
+  		Site.carousel = true;
+
   		$carousel.flickity({
 			  // options
 			  cellAlign: 'center',
@@ -130,17 +147,47 @@ Site.section = Barba.BaseView.extend({
   			$(".slide_counter_current_slide").html(index+1)
 			})
 
-  		$(".next").on('click', function(){
-  			$carousel.flickity('next', true)
-  		})
-
-  		$(".previous").on('click', function(){
-  			$carousel.flickity('previous', true)
-  		})
   	}else{
 			// scroll to on mobile
 			$("main").scrollTop($(".candela_section.current_section").index()*$(".small_section").first().outerHeight())
   	}
+
+  	// always initialized for window resize accounting
+  	$(".next").on('click', function(){
+			$carousel.flickity('next', true)
+		})
+
+		$(".previous").on('click', function(){
+			$carousel.flickity('previous', true)
+		})
+
+  	$(window).resize(function(){
+  		
+  		if(window.innerWidth > 768 && !Site.carousel){
+  			Site.carousel = true;
+  			$carousel = $('.section_carousel');
+  			$carousel.flickity({
+				  // options
+				  cellAlign: 'center',
+				  contain: true,
+				  wrapAround: true,
+				  cellSelector: '.section_carousel_cell',
+				  prevNextButtons: false
+				})
+	  		
+	  		$carousel.on( 'change.flickity', function( event, index ) {
+	  			$(".slide_counter_current_slide").html(index+1)
+				})
+
+  		}else if(window.innerWidth < 768){
+  			if(Site.carousel){
+  				$carousel.flickity('destroy')
+  			}
+  			Site.carousel = false;
+  			console.log("destroyed!")
+  		}
+  	})
+
   },
   onLeave: function(){
 

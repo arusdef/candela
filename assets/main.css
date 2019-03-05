@@ -192,7 +192,7 @@ header{
 	font-size: 1rem;
 	line-height: 2rem;
 	text-align: center;
-	color: black;
+	color: #424142;
 	font-family: 'FoundersGrotesqueRegular', arial, sans;
 	text-transform: uppercase;
 	user-select: none;
@@ -200,6 +200,7 @@ header{
 	position: relative;
 	border-top: 1px solid #ADAAAD;
 	height: 2rem;
+	padding-bottom: 3.25rem;
 }
 
 
@@ -305,14 +306,6 @@ footer{
 
 /* SECTIONS */
 
-/* 
-
-7 rows:
-14.29vh - 0.32857vw 
-
-8 rows:
-12.5vh - 0.2875vw
-*/
 
 main{
 	position: fixed;
@@ -530,6 +523,10 @@ h1{
 	z-index: 1000;
 }
 
+#popup_vimeo_video{
+	padding:36.25% 0 0 0;position:relative;
+}
+
 
 /* SECTION PAGE */
 
@@ -703,6 +700,11 @@ h2.slide_counter{
 	margin-bottom: 0.75rem;
 }
 
+.column_text b, .column_text strong{
+		font-family: 'FoundersGrotesqueRegular', arial, sans;
+		font-weight: normal;
+	}
+
 .column_text ol{
 	box-sizing: border-box;
 	padding-left: 0.9rem;
@@ -785,6 +787,7 @@ img.image_right{
 	object-position: right top;
 }
 .caption_left, .caption_right{
+	color: #989698;
 	max-width: 100%;
 }
 
@@ -855,6 +858,10 @@ a.small_section .sub_fader{
 
 	/* FOOTER */
 
+	footer{
+		z-index: 9999999999999999999;
+	}
+
 	.logo_up{ display: block; }
 	.mobile_trailer{ display: block; }
 
@@ -873,9 +880,11 @@ a.small_section .sub_fader{
 
 	#contact_section, #contact_section.seven{
 		top: 3rem;
+		z-index: 100;
+		box-sizing: border-box;
+		padding-bottom: 6rem;
 		height: calc(100vh - 5rem);
 		overflow-y: scroll;
-		overflow-y: scroll; 
 		-webkit-overflow-scrolling: touch;
 		display: block;
 	}
@@ -893,10 +902,36 @@ a.small_section .sub_fader{
 	}
 
 
+	#vimeo_video, #vimeo_video.seven{
+		top: 3rem;
+		height: calc(100vh - 5rem);
+	}
+
+	#exit_video{
+		position: absolute;
+		top: 0.75rem;
+		right: 0.75rem;
+		width: 1rem;
+		cursor: pointer;
+		height: 1rem;
+		background-image: url('icons/candela_exit.svg');
+		background-repeat: no-repeat;
+		background-size: 100%;
+		background-position: center;
+		z-index: 1000;
+	}
+
+	#popup_vimeo_video{
+		padding:46.25% 0 0 0;position:relative;
+	}
+
+
 	/* MAIN */
 
 	main, main.seven{
 		top: 3rem;
+		box-sizing: border-box;
+		padding-bottom: 1.5rem;
 		height: calc(100vh - 5rem);
 		overflow-y: scroll; 
 		-webkit-overflow-scrolling: touch;
@@ -939,13 +974,16 @@ a.small_section .sub_fader{
 	.candela_section.small_section.width_half, .candela_section.small_section.width_half .sub_fader{ height: 2rem; }
 	.candela_section.small_section.width_full, .candela_section.small_section.width_full .sub_fader{ height: 6rem; }
 
+	.small_section, .candela_section.small_section:last-of-type{
+		border-bottom: 1px solid #ADAAAD;
+	}
+
 	.small_section h3{
 		position: absolute;
 		padding-left: 0.75rem;
 		font-size: 0.88rem;
     font-weight: normal;
 	}
-
 
 	.candela_section.current_section{
 		height: auto;
@@ -963,6 +1001,8 @@ a.small_section .sub_fader{
 		line-height: 1.1rem;
 	}
 
+	
+
 	.section_carousel{
 		position: relative;
 		height: auto;
@@ -975,7 +1015,6 @@ a.small_section .sub_fader{
 		padding-top: 0.5rem;
 		margin-top: 0.5rem;
 	}
-
 
 	.slide_column, .slide_column.column_text, .slide_column.column_image{
 		display: block;
