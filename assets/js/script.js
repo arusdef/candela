@@ -62,9 +62,12 @@ Site.footer = function(){
 	$("#trailer_tab, #exit_video").on('click', function(){
 		$("#contact_tab, #contact_section").removeClass('active')
 		$("#trailer_tab").toggleClass("active")
-		$("#vimeo_video").toggleClass("show")
-		$("#vimeo_video").toggleClass("revealed")
 		$("main").toggleClass("video")
+
+		setTimeout(function(){
+			$("#vimeo_video").toggleClass("show")
+			$("#vimeo_video").toggleClass("revealed")
+		}, 420)
 
 	})
 }
@@ -83,6 +86,9 @@ Site.homepage = Barba.BaseView.extend({
     		delay += 0.2;
     	})
     }else{ // if visiting the homepage through another page of the site	
+    	if(window.innerWidth < 768){
+	    	$("main").scrollTop(0)
+	    }
     	TweenMax.to($(".fader"), 0.3, {opacity: 0, ease: Power4.easeIn})
     }
 
@@ -131,12 +137,17 @@ Site.section = Barba.BaseView.extend({
   		$(".previous").on('click', function(){
   			$carousel.flickity('previous', true)
   		})
+  	}else{
+			// scroll to on mobile
+			$("main").scrollTop($(".candela_section.current_section").index()*$(".small_section").first().outerHeight())
   	}
   },
   onLeave: function(){
 
   }
 });
+
+/* for mobile, we need to open and then scroll to */
 
 // from homepage to a subpage 
 var subpageTransition = Barba.BaseTransition.extend({
@@ -148,12 +159,13 @@ var subpageTransition = Barba.BaseTransition.extend({
 		_this.newContainerLoading
 		.then(function(){
 			var $oldContainer = $("#" + _this.oldContainer.id)
-
+			
 			// get count
 			var count = (($("main").hasClass("seven")) ? 7 : 8),
 					distributedFooterHeight = $("footer").outerHeight()/count,
-					targetSectionHeight = ($(window).outerHeight()*0.7) - distributedFooterHeight,
-					smallSectionHeight = ((($(window).outerHeight()*0.3) - $("header").outerHeight())/(count - 1)) - distributedFooterHeight;
+					targetSectionHeight = (( $(window).innerWidth() > 768 ) ? ($(window).outerHeight()*0.7) - distributedFooterHeight : $(window).outerHeight()),
+					smallSectionHeight = (( $(window).innerWidth() > 768 ) ? ((($(window).outerHeight()*0.3) - $("header").outerHeight())/(count - 1)) - distributedFooterHeight : $(".section_link").first().outerHeight());
+
 			// fade out title and content
 			TweenMax.to($(".fader"), 0.4, {opacity: 1, ease: Power3.easeIn})
 			TweenMax.to($("h1"), 0.4, {opacity: 0, ease: Power3.easeIn})
@@ -161,6 +173,7 @@ var subpageTransition = Barba.BaseTransition.extend({
 			$oldContainer.find(".section_link").each(function(){
 				if($(this).attr('id') == targetSection){
 					TweenMax.to($(this), 0.6, {height: targetSectionHeight, ease: Power3.easeIn})
+					TweenMax.to($(this).find(".mobile_preview"), 0.3, {opacity: 0, ease: Power3.easeIn})
 				}else{
 					TweenMax.to($(this), 0.6, {height: smallSectionHeight, ease: Power3.easeIn})
 				}
@@ -173,6 +186,7 @@ var subpageTransition = Barba.BaseTransition.extend({
 			setTimeout(function(){
 				TweenMax.set($(".fader"), {clearProps: "all"})
 				TweenMax.set($("h1"), {clearProps: "all"})
+				TweenMax.set($(".mobile_preview"), {clearProps: "all"})
 			}, 700)
 
 		})
@@ -192,9 +206,10 @@ var interSubpageTransition = Barba.BaseTransition.extend({
 					targetSectionHeight = ($(window).outerHeight()*0.7) - distributedFooterHeight,
 					smallSectionHeight = ((($(window).outerHeight()*0.3) - $("header").outerHeight())/(count - 1)) - distributedFooterHeight;
 
+			if(window.innerWidth < 768){ TweenMax.to($(targetId).find("h3"), 0.4, {opacity: 0, ease: Power3.easeIn}) }
 			TweenMax.to($(".sub_fader"), 0.4, {opacity: 1, ease: Power3.easeIn})
 			TweenMax.to($(".button"), 0.4, {opacity: 0, ease: Power3.easeIn})
-
+			TweenMax.to($oldContainer.find(".mobile_preview"), 0.3, {opacity: 0, ease: Power3.easeIn})
 			TweenMax.to($oldContainer.find(".current_section"), 0.6, {delay: 0.3, height: smallSectionHeight})
 			TweenMax.to($oldContainer.find(targetId), 0.6, {delay: 0.3, height: targetSectionHeight})
 
@@ -203,8 +218,10 @@ var interSubpageTransition = Barba.BaseTransition.extend({
 			}, 920)
 
 			setTimeout(function(){
+				TweenMax.set($("h3"), {clearProps: "all"})
 				TweenMax.set($(".sub_fader"), {clearProps: "all"})
 				TweenMax.set($(".button"), {clearProps: "all"})
+				TweenMax.set($(".mobile_preview"), {clearProps: "all"})
 			}, 1000)
 		})
 	}
@@ -222,12 +239,10 @@ var homepageTransition = Barba.BaseTransition.extend({
 			var $oldContainer = $("#" + _this.oldContainer.id);
 			var count = (($("main").hasClass("seven")) ? 7 : 8),
 					distributedFooterHeight = $("footer").outerHeight()/count,
-					targetHeight = ($(window).outerHeight()/count) - distributedFooterHeight;
+					targetHeight = (( $(window).innerWidth() > 768 ) ? ($(window).outerHeight()/count) - distributedFooterHeight : $(".small_section").first().outerHeight());
 
 			TweenMax.to($($oldContainer).find(".sub_fader"), 0.4, {opacity: 1, ease: Power3.easeIn})
 			TweenMax.to($($oldContainer).find(".button"), 0.4, {opacity: 0, ease: Power3.easeIn})
-
-
 			TweenMax.to($($oldContainer).find(".candela_section"), 0.6, {delay: 0.3, height: targetHeight})
 
 			setTimeout(function(){

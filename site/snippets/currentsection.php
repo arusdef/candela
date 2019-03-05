@@ -6,7 +6,7 @@
 		<?php endif ?>
 	</h1>
 	<h2 class="slide_counter">
-		<span class="slide_counter_current_slide">1</span>/<?= $section->sectionslides()->toStructure()->count() ?>
+		<span class="slide_counter_current_slide">1</span> / <?= $section->sectionslides()->toStructure()->count() ?>
 	</h2>
 
 	<div class="section_carousel">

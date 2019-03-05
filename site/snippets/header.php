@@ -49,7 +49,9 @@
 		</h3>
 	</div>
 	<a class="header_section" id="wordmark" href="<?= $site->url() ?>"></a>
-	<a class="header_section" id="logomark" href="<?= $site->url() ?>"></a>
+	<a class="header_section" id="logomark" href="<?= $site->url() ?>">
+		<?php snippet('icon') ?>
+	</a>
 </header>
 <main class="<?= $pagecount ?>">
 	<div id="barba-wrapper">

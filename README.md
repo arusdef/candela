@@ -12,10 +12,10 @@ Site by Íñigo Lopez and Lukas Eigler-Harding
 
 
 ## build
-- [ ] candela wordmark breakpoints
-- [x] mobile
-- [ ] mobile, second pass
 - [ ] candela logo animation
+- [x] candela wordmark breakpoints
+- [x] mobile
+- [x] mobile, second pass
 - [x] brochure button
 - [x] video section
 - [x] caption alignment
