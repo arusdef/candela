@@ -13,9 +13,10 @@ Site by Íñigo Lopez and Lukas Eigler-Harding
 
 ## build
 - [ ] candela wordmark breakpoints
-- [ ] mobile
+- [x] mobile
+- [ ] mobile, second pass
 - [ ] candela logo animation
-- [ ] brochure button
+- [x] brochure button
 - [x] video section
 - [x] caption alignment
 - [x] video pop up

@@ -41,6 +41,12 @@ html, body{
 	color: #424142;
 }
 
+@media(max-width: 768px){
+	html, body{
+		font-size: 25px;
+	}
+}
+
 /* HEADER */
 
 header{
@@ -132,7 +138,37 @@ header{
 	background-repeat: no-repeat;
 }
 
+
 /* FOOTER */
+
+.logo_up{
+	display: none;
+	width: 100%;
+	position: relative;
+	height: 8rem;
+	background-image: url(icons/candela_icon.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 10%;
+	border-top: 1px solid #ADAAAD;
+}
+
+.mobile_trailer{
+	display: none;
+	width: 100%;
+	font-size: 1rem;
+	line-height: 2rem;
+	text-align: center;
+	color: black;
+	font-family: 'FoundersGrotesqueRegular', arial, sans;
+	text-transform: uppercase;
+	user-select: none;
+	cursor: pointer;
+	position: relative;
+	border-top: 1px solid #ADAAAD;
+	height: 2rem;
+}
+
 
 footer{
 	width: 100%;
@@ -149,6 +185,7 @@ footer{
 	position: relative;
 	text-align: center;
 	box-sizing: border-box;
+	display: inline-block;
 	flex: 1;
 	height: 2.3vw;
 	font-size: 1rem;
@@ -156,6 +193,12 @@ footer{
 	text-transform: uppercase;
 	cursor: pointer;
 	transition: background-color 0.2s, color 0.2s;
+}
+
+.footer_section a{
+	display: block;
+	text-decoration: none;
+	color: #424142;
 }
 
 .footer_section:hover, .footer_section.active{
@@ -387,6 +430,21 @@ h1 .section_subtitle{
 .desktop_preview .image_wrapper:hover img{
 	mix-blend-mode: screen;
 }
+
+h1{
+	left: 0.75rem;
+}
+
+.mobile_preview{
+	display: none;
+	margin-left: 55%;
+	object-position: right top;
+	width: 40%;
+	object-fit: contain;
+	position: relative;
+	height: 5rem;
+}
+
 
 /* pop up */
 
@@ -711,3 +769,149 @@ a.small_section .sub_fader{
 	
 }
 
+@media(max-width: 768px){
+
+	/* HEADER */
+	#temp, #logomark{
+		display: none;
+	}
+
+	header.sliver, header.sliver.seven{
+		height: 3rem;
+	}
+
+	/* FOOTER */
+
+	.logo_up{ display: block; }
+	.mobile_trailer{ display: block; }
+
+	.footer_section{
+		height: 2rem;
+		line-height: 2rem;
+	}
+
+	.footer_section:first-of-type{
+		padding-left: 0.75rem;
+	}
+
+	.footer_section:last-of-type{
+		padding-right: 0.75rem;
+	}
+
+	/* MAIN */
+
+	main, main.seven{
+		top: 3rem;
+		height: calc(100vh - 5rem);
+		overflow-y: scroll; 
+		-webkit-overflow-scrolling: touch;
+	}
+
+	main.seven .sliver.section_link.width_full, .sliver.section_link.width_full, .gradient, .seven .gradient, .fader, .seven .fader{
+		height: 6rem;	
+	}
+
+	main.seven .sliver.section_link.width_half, .sliver.section_link.width_half{
+		height: 2rem;	
+		width: 100%;
+	}
+
+	.sliver.section_link.width_full{
+		position: relative;
+	}
+
+	.desktop_preview{
+		display: none;
+	}
+
+	.width_full	.mobile_preview{
+		display: inline-block;
+	}
+
+	/* SUBPAGE SECTIONS */
+
+	.candela_section.small_section.width_half, .candela_section.small_section.width_full{
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+  	justify-content: center;
+	}
+
+	.candela_section.small_section.width_half, .candela_section.small_section.width_half .sub_fader{ height: 2rem; }
+	.candela_section.small_section.width_full, .candela_section.small_section.width_full .sub_fader{ height: 6rem; }
+
+	.small_section h3{
+		position: absolute;
+		padding-left: 0.75rem;
+		font-size: 0.88rem;
+    font-weight: normal;
+	}
+
+
+	.candela_section.current_section{
+		height: auto;
+		font-size: 0.75rem;
+		letter-spacing: 0.025rem;
+		line-height: 1.1rem;
+	}
+
+	.candela_section.current_section h1{
+		padding-left: 0.75rem;
+		padding-bottom: 1.5rem;
+	}
+
+	.column_text h2{
+		line-height: 1.1rem;
+	}
+
+	.section_carousel{
+		position: relative;
+		height: auto;
+		padding-bottom: 1rem;
+	}
+
+	.section_carousel_cell{ 
+		display: block;
+		height: auto;
+		padding-bottom: 1rem;
+	}
+
+	.slide_column, .slide_column.column_text, .slide_column.column_image{
+		display: block;
+		box-sizing: border-box;
+		width: 100%;
+		padding-left: 0.75rem;
+		padding-right: 0.75rem;
+		padding-bottom: 1rem;
+	}
+
+	.slide_column.column_image.column_image_left{
+		text-align: left;
+	}
+
+	.slide_column.column_image{
+		max-width: inherit;
+		text-align: left;
+	}
+
+	.slide_column img{
+		object-position: left top;
+		text-align: left;
+		width: 100%;
+		max-width: inherit;
+		max-height: inherit;
+	}
+
+	.caption_left, .caption_right{
+		text-align: left;
+		margin-top: 0;
+		padding-top: 0;
+		margin-bottom: 1rem;
+		color: #D8D5D8;
+	} 
+
+	h2.slide_counter{ display: none; }
+
+	.button{ display: none; }
+
+}

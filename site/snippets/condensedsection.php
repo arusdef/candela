@@ -5,4 +5,8 @@
 		<span class="section_subtitle"><?= $sectionsubtitle->html() ?></span>
 	<?php endif ?>
 	</h3>
+
+	<?php if($page->sectionpinned()): ?>
+		<img class="mobile_preview" src="<?= $sectionpinned->first()->toFile()->resize(400)->url() ?>">
+	<?php endif ?>
 </a>

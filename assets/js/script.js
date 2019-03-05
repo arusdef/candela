@@ -110,7 +110,7 @@ Site.section = Barba.BaseView.extend({
   	
   	var $carousel = $('.section_carousel');
 
-  	if(window.outerWidth > 768){
+  	if(window.innerWidth > 768){
   		$carousel.flickity({
 			  // options
 			  cellAlign: 'center',

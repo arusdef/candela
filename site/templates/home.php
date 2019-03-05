@@ -22,6 +22,11 @@
 					<?php endif ?>
 				<?php endforeach ?>
 			</div>
+
+			<?php if($page->sectionpinned()): ?>
+				<img class="mobile_preview" src="<?= $page->sectionpinned()->first()->toFile()->resize(400)->url() ?>">
+			<?php endif ?>
+
 		</a
 	><?php 
 					endif;

@@ -5,7 +5,7 @@
 				if($section->title() == $page->title()): 
 					snippet('currentsection', ['section' => $page]); 
 				else: 
-					snippet('condensedsection', ['sectiontitle' => $section->title(), 'sectionsubtitle' => $section->sectionsubtitle(), 'sectionurl' => $section->url(), 'sectionsize' => $section->sectionsize() ]);
+					snippet('condensedsection', ['sectiontitle' => $section->title(), 'sectionsubtitle' => $section->sectionsubtitle(), 'sectionurl' => $section->url(), 'sectionsize' => $section->sectionsize(), 'sectionpinned' => $section->sectionpinned() ]);
 				endif;
 			endforeach;
 		?>
