@@ -35,6 +35,7 @@ fields:
         options: 
           textimage: Text Left, Image Right
           imagetext: Image Left, Text Right
+          imageimage: Double Image
           text:  Text, Center
           image:  Image, Center
           video: Video, Center
@@ -57,5 +58,14 @@ fields:
         width: 1/3
       imagecaption:
         label: Caption
+        type: text
+        width: 2/3
+      secondimagecontent:
+        label: Second Image (optional)
+        type: files
+        multiple: false
+        width: 1/3
+      secondimagecaption:
+        label: Second Caption (optional)
         type: text
         width: 2/3

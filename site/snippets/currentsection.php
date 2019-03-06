@@ -12,7 +12,7 @@
 	<div class="section_carousel">
 		<?php foreach ($section->sectionslides()->toStructure() as $slide): ?>
 			<div class="section_carousel_cell">
-				<?php snippet('slides/'.$slide->selectcontent(), ['slidetexttitle' => $slide->textualtitle(), 'slidetext' => $slide->textualcontent(), 'slideimage' => $slide->imagecontent(), 'slidecaption' => $slide->imagecaption(), 'slidevideo' => $slide->videocontent()]) ?>
+				<?php snippet('slides/'.$slide->selectcontent(), ['slidetexttitle' => $slide->textualtitle(), 'slidetext' => $slide->textualcontent(), 'slideimage' => $slide->imagecontent(), 'slidecaption' => $slide->imagecaption(), 'secondslideimage' => $slide->secondimagecontent(), 'secondslidecaption' => $slide->secondimagecaption(), 'slidevideo' => $slide->videocontent()]) ?>
 			</div>
 		<?php endforeach ?>
 		<div class="button previous"></div>
