@@ -15,7 +15,11 @@
 		<?php endif ?>
 		<?php if($site->brochurevisibility()): ?>
 			<div id="brochure_tab" class="footer_section">
-				<a target="_blank" href="<?= $site->brochurefile()->toFile()->url() ?>" >
+				<a target="_blank" 
+				<?php if($site->brochurefile()->isNotEmpty()): ?>
+					href="<?= $site->brochurefile()->toFile()->url() ?>" 
+				<?php endif ?>
+				>
 					<?= $site->brochuretitle()->html() ?>
 				</a>
 			</div>	

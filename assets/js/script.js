@@ -9,7 +9,7 @@ Site.loaded = false;
 
 Site.weather = function(){
 	$.ajax({
-	  url: "http://api.openweathermap.org/data/2.5/weather?lat=20.21&lon=-87.49&appid=2ef957d7223cdcc456536d6972b9f272",
+	  url: "https://api.openweathermap.org/data/2.5/weather?lat=20.21&lon=-87.49&appid=2ef957d7223cdcc456536d6972b9f272",
 	  dataType: "json"
 	}).done(function(results) {
 
