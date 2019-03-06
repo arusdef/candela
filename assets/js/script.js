@@ -4,6 +4,7 @@
 var Site = {};
 
 Site.targetPage = "";
+Site.targetSlide = "";
 Site.loaded = false;
 
 Site.weather = function(){
@@ -84,6 +85,11 @@ Site.footer = function(){
 		}, 420)
 
 	})
+
+	$(".logo_up").on('click', function(){
+		$("main").scrollTop(0)
+	})
+
 }
 
 // basic barba:
@@ -105,6 +111,11 @@ Site.homepage = Barba.BaseView.extend({
 	    }
     	TweenMax.to($(".fader"), 0.3, {opacity: 0, ease: Power4.easeIn})
     }
+
+    $(".image_wrapper").on('click', function(){
+			Site.targetSlide = ($(this).attr("data-target-slide").length > 0 ? $(this).attr("data-target-slide") : "");
+
+		})
 
     $("a").on('click', function(){
 			Site.targetPage = (($(this).attr("id") != null || $(this).attr("id") != undefined)? $(this).attr("id") : "");
@@ -146,6 +157,12 @@ Site.section = Barba.BaseView.extend({
   		$carousel.on( 'change.flickity', function( event, index ) {
   			$(".slide_counter_current_slide").html(index+1)
 			})
+
+			if(Site.targetSlide != ""){
+				var targetSlide = ".target_slide-" + Site.targetSlide;
+				$carousel.flickity( 'selectCell', targetSlide, true, true );
+				Site.targetSlide = "";
+			}
 
   	}else{
 			// scroll to on mobile
@@ -314,7 +331,7 @@ window.onload = function(){
 	Barba.Pjax.start();
 	Site.loaded = true; //update site session status
 
-	// Site.weather();
+	Site.weather();
 	Site.footer();
 
 

@@ -24,10 +24,36 @@ fields:
     type: files
     multiple: true
     max: 9
+  sectionpreviewfull:
+    label: Desktop Preview Images (Updated)
+    type: structure
+    multiple: true
+    max: 9
+    fields: 
+      previewimage:
+        label: Preview Image
+        type: files
+        multiple: false
+      targetslide:
+        label: Slide to jump to
+        type: select
+        multiple: false
+        options: query
+        query: 
+          fetch: page.sectionslides.toStructure
+          text: "{{ structureItem.fulltitle }}"
+          value: "{{ structureItem.fulltitle }}"
+        help: (optional)
   sectionslides:
     label: Section Slides
     type: structure
     fields:
+      fulltitle:
+        label: Section Name
+        type: text
+        converter: slug
+        help: (for internal use)
+        required: true
       selectcontent:
         label: Content to Show
         type: radio

@@ -60,6 +60,14 @@ header{
 	border-bottom: 1px solid #ADAAAD;
 }
 
+.logo_icon_black{
+	transition: fill 0.1s;
+}
+
+.logo_icon_black:hover {
+		fill: #C3A678;
+}
+
 .header_section{
 	flex: 1;
 	box-sizing: border-box;
@@ -179,10 +187,11 @@ header{
 	width: 100%;
 	position: relative;
 	height: 8rem;
+	cursor: pointer;
 	background-image: url(icons/candela_icon.svg);
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: 10%;
+	background-size: 10% 80%;
 	border-top: 1px solid #ADAAAD;
 }
 
@@ -377,6 +386,9 @@ main{
 	font-size: 0;
 	transition: filter 0.4s ease-in;
 	will-change: filter;
+	scroll-behavior: smooth;
+	scroll-behavior: -webkit-smooth;
+	-webkit-scroll-behavior: smooth;
 }
 
 main.video{
@@ -435,7 +447,7 @@ h1{
 	left: 1.5rem;
 	color: #424142;
 	font-family: 'PracticeDisplayRegular', TimesNewRoman, serif;
-	font-size: 0.88rem;
+	font-size: 1rem;
 	font-weight: normal;
 	z-index: 100;
 }
@@ -621,7 +633,7 @@ h1{
 .current_section{
 	position: relative;
 	font-family: 'PracticeDisplayRegular', TimesNewRoman, serif;
-	font-size: 1rem;
+	font-size: 0.88rem;
 	display: block;
 	width: 100%;
 	overflow: hidden;
@@ -660,7 +672,7 @@ a.small_section:hover{
 	left: auto;
 	padding-left: 1.5rem;
 	padding-top: 1rem;
-	font-size: 0.88rem;
+	font-size: 1rem;
 	font-weight: normal;
 	font-family: 'PracticeDisplayRegular', TimesNewRoman, serif;
 }
@@ -741,6 +753,28 @@ h2.slide_counter{
 	max-height: 50vh;
 	max-width: 1100px;
 	margin: 0 auto;
+}
+
+.current_video{
+	padding:50.25% 0 0 0;
+	position:relative; 
+	max-height: 100%;
+}
+
+@media(max-height: 900px){
+	.current_video{
+		padding:40.25% 0 0 0;
+		position:relative; 
+		max-height: 100%;
+	}	
+}
+
+@media(max-height: 700px){
+	.current_video{
+		padding:35.25% 0 0 0;
+		position:relative; 
+		max-height: 100%;
+	}	
 }
 
 .slide_column{
@@ -851,6 +885,7 @@ img.image_right{
 .caption_left, .caption_right{
 	color: #989698;
 	max-width: 100%;
+	font-size: 0.75rem;
 }
 
 .caption_left{
@@ -913,6 +948,7 @@ a.small_section .sub_fader{
 	#temp, #logomark{
 		display: none;
 	}
+
 
 	header.sliver, header.sliver.seven{
 		height: 3rem;

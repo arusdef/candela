@@ -16,9 +16,13 @@
 			<?php else: ?>
 				<div class="desktop_preview">
 			<?php endif ?>
-				<?php foreach ($page->sectionpreview()->toFiles() as $previewImage): ?>
-					<?php if($previewImage->image()): ?>
-						<span class="image_wrapper"><img src="<?= $previewImage->resize(400)->url() ?>" ></span>
+				<?php foreach ($page->sectionpreviewfull()->toStructure() as $preview): ?>
+					<?php if($preview->previewimage()->image()): ?>
+						<span class="image_wrapper"
+						<?php if($preview->targetslide()->isNotEmpty()): ?> 
+							data-target-slide="<?= $preview->targetslide()->first() ?>"
+						<?php endif ?>
+						><img src="<?= $preview->previewimage()->toFile()->resize(400)->url() ?>" ></span>
 					<?php endif ?>
 				<?php endforeach ?>
 			</div>

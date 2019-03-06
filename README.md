@@ -15,10 +15,14 @@ Site by Íñigo Lopez and Lukas Eigler-Harding
 - [ ] candela logo animation
 
 ## extra dev
-- [ ] magnified image seems wrong
-- [ ] image captions size? 
-- [ ] contact forms (prefer just a sign-up at most)
+- [x] magnified image seems wrong
+- [x] image captions size? 
+- [x] contact forms (prefer just a sign-up at most)
 - [ ] 3 column seems too much? (i can offer two column images)
+
+## edits
+- [x] slide typeface
+- [x] desktop size of logo
 
 ## approach
 
