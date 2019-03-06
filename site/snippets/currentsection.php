@@ -15,8 +15,8 @@
 				<?php snippet('slides/'.$slide->selectcontent(), ['slidetexttitle' => $slide->textualtitle(), 'slidetext' => $slide->textualcontent(), 'slideimage' => $slide->imagecontent(), 'slidecaption' => $slide->imagecaption(), 'secondslideimage' => $slide->secondimagecontent(), 'secondslidecaption' => $slide->secondimagecaption(), 'slidevideo' => $slide->videocontent()]) ?>
 			</div>
 		<?php endforeach ?>
-		<div class="button previous"></div>
-		<div class="button next"></div>
+		<div class="slide_button previous"></div>
+		<div class="slide_button next"></div>
 	</div>
 
 </section>

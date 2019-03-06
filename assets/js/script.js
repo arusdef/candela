@@ -255,7 +255,7 @@ var interSubpageTransition = Barba.BaseTransition.extend({
 
 			if(window.innerWidth < 768){ TweenMax.to($(targetId).find("h3"), 0.4, {opacity: 0, ease: Power3.easeIn}) }
 			TweenMax.to($(".sub_fader"), 0.4, {opacity: 1, ease: Power3.easeIn})
-			TweenMax.to($(".button"), 0.4, {opacity: 0, ease: Power3.easeIn})
+			TweenMax.to($(".slide_button"), 0.4, {opacity: 0, ease: Power3.easeIn})
 			TweenMax.to($oldContainer.find(".mobile_preview"), 0.3, {opacity: 0, ease: Power3.easeIn})
 			TweenMax.to($oldContainer.find(".current_section"), 0.6, {delay: 0.3, height: smallSectionHeight})
 			TweenMax.to($oldContainer.find(targetId), 0.6, {delay: 0.3, height: targetSectionHeight})
@@ -267,7 +267,7 @@ var interSubpageTransition = Barba.BaseTransition.extend({
 			setTimeout(function(){
 				TweenMax.set($("h3"), {clearProps: "all"})
 				TweenMax.set($(".sub_fader"), {clearProps: "all"})
-				TweenMax.set($(".button"), {clearProps: "all"})
+				TweenMax.set($(".slide_button"), {clearProps: "all"})
 				TweenMax.set($(".mobile_preview"), {clearProps: "all"})
 			}, 1000)
 		})
@@ -289,7 +289,7 @@ var homepageTransition = Barba.BaseTransition.extend({
 					targetHeight = (( $(window).innerWidth() > 768 ) ? ($(window).outerHeight()/count) - distributedFooterHeight : $(".small_section").first().outerHeight());
 
 			TweenMax.to($($oldContainer).find(".sub_fader"), 0.4, {opacity: 1, ease: Power3.easeIn})
-			TweenMax.to($($oldContainer).find(".button"), 0.4, {opacity: 0, ease: Power3.easeIn})
+			TweenMax.to($($oldContainer).find(".slide_button"), 0.4, {opacity: 0, ease: Power3.easeIn})
 			TweenMax.to($($oldContainer).find(".candela_section"), 0.6, {delay: 0.3, height: targetHeight})
 
 			setTimeout(function(){
@@ -298,7 +298,7 @@ var homepageTransition = Barba.BaseTransition.extend({
 
 			setTimeout(function(){
 				TweenMax.set($(".sub_fader"), {clearProps: "all"})
-				TweenMax.set($(".button"), {clearProps: "all"})
+				TweenMax.set($(".slide_button"), {clearProps: "all"})
 			}, 1000)
 		
 		})

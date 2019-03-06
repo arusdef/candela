@@ -303,6 +303,68 @@ footer{
 	height: calc(85.71vh - 1.97142vw);
 }
 
+@media(max-height: 800px){
+	#contact_section, #contact_section.seven{
+		padding-top: 3rem;
+		border-bottom: 1px solid #424142;
+		z-index: 100;
+		box-sizing: border-box;
+		padding-bottom: 6rem;
+		overflow-y: scroll;
+		-webkit-overflow-scrolling: touch;
+		display: block;
+	}
+}
+
+
+/* MAILCHIMP CSS */
+/* reference: https://eepurl.com/dyilnX */
+
+#mc_embed_signup{
+	position: relative;
+	width: 37.5%;
+	margin: 0 auto;
+}
+
+.indicates-required{
+	font-size: 0.75rem;
+	margin-bottom: 0.5rem;
+}
+
+#mc_embed_signup div.mc-field-group input{
+	line-height: 1rem;
+	padding: 0.15rem;
+	box-sizing: border-box;
+	font-family: 'FoundersGrotesqueLight', arial, sans;
+	font-size: 0.88rem;
+	margin-top: 0.25rem;
+	margin-bottom: 0.25rem;
+	border: 1px solid #424142;
+	-webkit-appearance: none;
+	border-radius: 0;
+}
+
+#mc_embed_signup input.button{
+	-webkit-appearance: none;
+	background-color: #424142;
+	color: white;
+	font-size: 0.88rem;
+	border: none;
+	border-radius: 0;
+	text-transform: uppercase;
+	box-sizing: border-box; 
+	line-height: 1rem;
+	margin-top: 0.5rem;
+	padding: 0.15rem;
+	padding-left: 0.25rem;
+	padding-right: 0.25rem;
+}
+
+.form_name, .form_entry{
+	display: block;
+	width: 50%;
+}
+
 
 /* SECTIONS */
 
@@ -625,7 +687,7 @@ h2.slide_counter{
   outline: none;
 }
 
-.button{
+.slide_button{
 	z-index: 10000000000000;
 	position: absolute;
 	top: 0;
@@ -638,10 +700,10 @@ h2.slide_counter{
 	border-radius: 0.5rem;
 	background-color: #1C1C1C;
 }
-.button:hover{ transform: scale(1.1); }
-.button:active{ transform: scale(1); }
-.button.next{ right: 1rem; }
-.button.previous{	left: 1rem; }
+.slide_button:hover{ transform: scale(1.1); }
+.slide_button:active{ transform: scale(1); }
+.slide_button.next{ right: 1rem; }
+.slide_button.previous{	left: 1rem; }
 
 .section_carousel_cell{
 	height: 60vh;
@@ -897,10 +959,14 @@ a.small_section .sub_fader{
 		margin-top: 1rem;
 	}
 
-	.slide_single_column.column_text p{
+	.slide_single_column.column_text p, #mc_embed_signup{
 		width: 100%;
 	}
 
+	.form_name, .form_entry{
+		display: block;
+		width: 100%;
+	}
 
 	#vimeo_video, #vimeo_video.seven{
 		top: 3rem;
@@ -1055,6 +1121,6 @@ a.small_section .sub_fader{
 
 	h2.slide_counter{ display: none; }
 
-	.button{ display: none; }
+	.slide_button{ display: none; }
 
 }

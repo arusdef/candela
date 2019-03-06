@@ -59,7 +59,16 @@ columns:
             label: Contact Tab Content
             type: textarea
             size: large
-
+          contactsubscribeheader:
+            label: Mailchimp Subscription Title
+            type: text
+            default: Sign up for updates
+            width: 1/2
+          contactsubscribebutton:
+            label: Mailchimp Subscription Button Name
+            type: text
+            default: Sign up
+            width: 1/2
           trailersection:
             label: Trailer Section
             type: headline          
