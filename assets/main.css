@@ -504,7 +504,11 @@ h1 .section_subtitle{
 }
 
 .desktop_preview.lots_of_images{
-	left: 0;
+	left: auto;
+	right: 0;
+	transition: transform 5s;
+	width: 100%;
+	text-align: right;
 }
 
 .sliver.width_half .desktop_preview, .sliver.width_half .desktop_preview.lots_of_images{
@@ -884,8 +888,9 @@ img.image_right{
 }
 .caption_left, .caption_right{
 	color: #989698;
-	max-width: 100%;
 	font-size: 0.75rem;
+	max-width: 100%;
+	
 }
 
 .caption_left{
@@ -894,6 +899,11 @@ img.image_right{
 
 .caption_right{
 	text-align: right;
+}
+
+.image_caption.caption_center{
+	color: #989698;
+	font-size: 0.75rem;
 }
 
 /* minimized sections */
@@ -1147,7 +1157,7 @@ a.small_section .sub_fader{
 		max-height: inherit;
 	}
 
-	.caption_left, .caption_right{
+	.caption_left, .caption_right, .caption_center{
 		text-align: left;
 		margin-top: 0;
 		padding-top: 0;

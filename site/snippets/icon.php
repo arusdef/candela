@@ -1,4 +1,4 @@
-<svg id="candela_logomark" width="28px" height="79px" viewBox="0 0 28 79" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg id="candela_logomark" width="28px" height="79px" viewBox="0 0 28 79" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="meet">
     <title>Candela Icon</title>
     <g id="candela_logo_black" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g class="logo_icon_black" id="logo_icon_black" transform="translate(-1599.000000, -10.000000)" fill="#1C1C1C">

@@ -23,6 +23,7 @@ Site by Íñigo Lopez and Lukas Eigler-Harding
 ## edits
 - [x] slide typeface
 - [x] desktop size of logo
+- [ ] firefox shrinks svgs?
 
 ## approach
 

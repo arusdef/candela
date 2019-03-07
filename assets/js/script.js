@@ -92,6 +92,46 @@ Site.footer = function(){
 
 }
 
+Site.lotsOfImagesWrapper = function($this){
+	var totalLength = 0;
+	$this.children(".image_wrapper").each(function(){
+		var imageWrapper = $(this);
+		totalLength += imageWrapper.outerWidth(true);
+	})
+	$this.css({"width" : totalLength + "px"});
+}
+
+
+Site.lotsOfImages = function(){
+	$(".lots_of_images").each(function(index){
+		var $this = $(this);
+		Site.lotsOfImagesWrapper($this);
+
+    $(window).on('resize', function(){
+			Site.lotsOfImagesWrapper($this);
+    })
+
+		$this.parent().on('mouseover', function(e){
+			var windowWidth = $(window).innerWidth(),
+					totalImageWidth = $this.outerWidth(),
+					leftdistance = (windowWidth*0.18)/windowWidth,
+					overflowAmount = (totalImageWidth > windowWidth) ? Math.abs((windowWidth - totalImageWidth)/windowWidth) : -1*leftdistance;
+			
+			if(e.pageX <= windowWidth/2){
+				$this.css({"transform" : "translate(" + ((leftdistance + overflowAmount)*100) + "vw, 0)"})
+
+			}else if(e.pageX > windowWidth/2){
+				$this.css({"transform" : "translate(0)"})
+			}
+		})
+
+		$this.on('mouseout', function(e){
+			$this.css({"transform" : "translate(0)"})
+		})
+	})
+}
+
+
 // basic barba:
 Site.homepage = Barba.BaseView.extend({
   namespace: 'home_page',
@@ -112,11 +152,15 @@ Site.homepage = Barba.BaseView.extend({
     	TweenMax.to($(".fader"), 0.3, {opacity: 0, ease: Power4.easeIn})
     }
 
+    Site.lotsOfImages()
+
+    // determine target slide
     $(".image_wrapper").on('click', function(){
 			Site.targetSlide = ($(this).attr("data-target-slide").length > 0 ? $(this).attr("data-target-slide") : "");
 
 		})
 
+    // determine animation focus element
     $("a").on('click', function(){
 			Site.targetPage = (($(this).attr("id") != null || $(this).attr("id") != undefined)? $(this).attr("id") : "");
 		})
@@ -201,7 +245,6 @@ Site.section = Barba.BaseView.extend({
   				$carousel.flickity('destroy')
   			}
   			Site.carousel = false;
-  			console.log("destroyed!")
   		}
   	})
 
@@ -331,7 +374,7 @@ window.onload = function(){
 	Barba.Pjax.start();
 	Site.loaded = true; //update site session status
 
-	Site.weather();
+	//Site.weather();
 	Site.footer();
 
 
