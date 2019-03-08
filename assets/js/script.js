@@ -192,6 +192,8 @@ Site.homepage = Barba.BaseView.extend({
   namespace: 'home_page',
   onEnter: function() {
   	Site.targetPage = ""; // reset target link from homepage
+  	Site.activeSlideIndex = 0;
+		Site.activeSlideCount = 0; // reset slideshow indeces
   	$("#logomark").removeClass("open")
   },
   onEnterCompleted: function() {
@@ -364,7 +366,7 @@ var interSubpageTransition = Barba.BaseTransition.extend({
 	start: function(){
 		var _this = this;
 		var targetId = "#" + Site.targetPage;
-		console.log(Site.targetPage);
+		// console.log(Site.targetPage);
 		
 		_this.newContainerLoading
 		.then(function(){
