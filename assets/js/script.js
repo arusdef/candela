@@ -108,7 +108,7 @@ Site.footer = function(){
 	$(".logo_up").on('click', function(){
 		TweenMax.to($(".logo_up").find("img"), 0.75, {rotation: 180, onComplete: function(){
 			$("main").animate({ scrollTop: 0 }, 1000);
-			TweenMax.set($(".logo_up").find("img"), {clearProps: "all"})
+			TweenMax.to($(".logo_up").find("img"), 0.1, {delay: 1, clearProps: "all"})
 			}
 		})
 	})
