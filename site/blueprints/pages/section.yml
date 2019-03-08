@@ -19,11 +19,6 @@ fields:
     type: files
     width: 1/2
     multiple: false
-  sectionpreview:
-    label: Desktop Preview Images
-    type: files
-    multiple: true
-    max: 9
   sectionpreviewfull:
     label: Desktop Preview Images (Updated)
     type: structure
