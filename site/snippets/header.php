@@ -31,6 +31,10 @@
 				opacity: 0;
 			}
 
+			.mobile_footer{
+				opacity: 1;
+			}
+
 		</style>
 
 	</noscript>

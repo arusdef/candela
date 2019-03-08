@@ -59,9 +59,6 @@ Site.bottomPosition = function(footer){
 }
 
 Site.footer = function(){
-	
-	// Site.bottomPosition($("footer"));
-
 	// contact
 	$("#contact_tab").on('click', function(){
 		$(this).toggleClass("active")
@@ -112,7 +109,6 @@ Site.footer = function(){
 			}
 		})
 	})
-
 }
 
 Site.lotsOfImagesWrapper = function($this){
@@ -163,8 +159,7 @@ Site.lotsOfImages = function(){
 Site.arrowNav = function(){
 
 	document.addEventListener('keydown', function(e){
-		console.log(e.key, "activeSlideIndex: ", Site.activeSlideIndex)
-
+		// console.log(e.key, "activeSlideIndex: ", Site.activeSlideIndex)
 
 		if($(".barba-container").attr("id") != "section_page"){
 			return
@@ -213,6 +208,8 @@ Site.homepage = Barba.BaseView.extend({
     	TweenMax.to($(".fader"), 0.3, {opacity: 0, ease: Power4.easeIn})
     }
 
+    TweenMax.to($(".mobile_footer"), 0.3, {opacity: 1, ease: Power4.easeIn})
+
     Site.lotsOfImages()
 
     // determine target slide
@@ -240,6 +237,7 @@ Site.section = Barba.BaseView.extend({
 		})
   	
   	TweenMax.to($(".sub_fader"), 0.4, {opacity: 0, ease: Power4.easeIn})
+  	TweenMax.to($(".mobile_footer"), 0.4, {opacity: 1, ease: Power4.easeIn})
   	
   	var $carousel = $('.section_carousel');
 
@@ -265,25 +263,12 @@ Site.section = Barba.BaseView.extend({
 				Site.targetSlide = "";
 			}
 
-			// get current index. 
-			// update index on select change. 
-			// if arrowLeft si clicked when index = 0
-			// if arrowRight is clicked when index = max-1
-
 			var flkty = $carousel.data('flickity');
 			Site.activeSlideCount = flkty.slides.length;
 
 			$carousel.on( 'settle.flickity', function(event, index){
-					
-					console.log(event, index, flkty.slides.length)
 					Site.activeSlideIndex = index;
-					
-					console.log("activeSlideIndex: ", Site.activeSlideIndex)
-
-					
 			});
-
-
 
 
   	}else{
@@ -380,6 +365,7 @@ var interSubpageTransition = Barba.BaseTransition.extend({
 		var _this = this;
 		var targetId = "#" + Site.targetPage;
 		console.log(Site.targetPage);
+		
 		_this.newContainerLoading
 		.then(function(){
 			var $oldContainer = $("#" + _this.oldContainer.id);
@@ -388,23 +374,29 @@ var interSubpageTransition = Barba.BaseTransition.extend({
 					targetSectionHeight = ($(window).outerHeight()*0.7) - distributedFooterHeight,
 					smallSectionHeight = ((($(window).outerHeight()*0.3) - $("header").outerHeight())/(count - 1)) - distributedFooterHeight;
 
-			if(window.innerWidth < 768){ TweenMax.to($(targetId).find("h3"), 0.4, {opacity: 0, ease: Power3.easeIn}) }
+			if(window.innerWidth < 768){ 
+				TweenMax.to($(targetId).find("h3"), 0.4, {opacity: 0, ease: Power3.easeIn}) 
+			}
 			TweenMax.to($(".sub_fader"), 0.4, {opacity: 1, ease: Power3.easeIn})
+			TweenMax.to($(".section_carousel"), 0.4, {opacity: 0, ease: Power3.easeIn})
+			TweenMax.to($(".mobile_footer"), 0.4, {opacity: 0, ease: Power3.easeIn})
 			TweenMax.to($(".slide_button"), 0.4, {opacity: 0, ease: Power3.easeIn})
 			TweenMax.to($oldContainer.find(".mobile_preview"), 0.3, {opacity: 0, ease: Power3.easeIn})
-			TweenMax.to($oldContainer.find(".current_section"), 0.6, {delay: 0.3, height: smallSectionHeight})
-			TweenMax.to($oldContainer.find(targetId), 0.6, {delay: 0.3, height: targetSectionHeight})
+			TweenMax.to($oldContainer.find(".current_section"), 0.6, {delay: 0.4, height: smallSectionHeight})
+			TweenMax.to($oldContainer.find(targetId), 0.6, {delay: 0.4, height: targetSectionHeight})
 
 			setTimeout(function(){
 				_this.done(); // transition complete
-			}, 920)
+			}, 1040)
 
 			setTimeout(function(){
 				TweenMax.set($("h3"), {clearProps: "all"})
 				TweenMax.set($(".sub_fader"), {clearProps: "all"})
 				TweenMax.set($(".slide_button"), {clearProps: "all"})
 				TweenMax.set($(".mobile_preview"), {clearProps: "all"})
-			}, 1000)
+				TweenMax.set($(".section_carousel"), {clearProps: "all"})
+				// TweenMax.set($(".mobile_footer"), {clearProps: "all"})
+			}, 1100)
 		})
 	}
 })
@@ -424,16 +416,21 @@ var homepageTransition = Barba.BaseTransition.extend({
 					targetHeight = (( $(window).innerWidth() > 768 ) ? ($(window).outerHeight()/count) - distributedFooterHeight : $(".small_section").first().outerHeight());
 
 			TweenMax.to($($oldContainer).find(".sub_fader"), 0.4, {opacity: 1, ease: Power3.easeIn})
+			TweenMax.to($(".section_carousel"), 0.4, {opacity: 0, ease: Power3.easeIn})
+			TweenMax.to($(".mobile_footer"), 0.4, {opacity: 0, ease: Power3.easeIn})
 			TweenMax.to($($oldContainer).find(".slide_button"), 0.4, {opacity: 0, ease: Power3.easeIn})
-			TweenMax.to($($oldContainer).find(".candela_section"), 0.6, {delay: 0.3, height: targetHeight})
+			TweenMax.to($($oldContainer).find(".candela_section"), 0.6, {delay: 0.4, height: targetHeight})
+
 
 			setTimeout(function(){
 				_this.done(); // transition complete
-			}, 920)
+			}, 1040)
 
 			setTimeout(function(){
 				TweenMax.set($(".sub_fader"), {clearProps: "all"})
 				TweenMax.set($(".slide_button"), {clearProps: "all"})
+				TweenMax.set($(".section_carousel"), {clearProps: "all"})
+				// TweenMax.set($(".mobile_footer"), {clearProps: "all"})
 			}, 1000)
 		
 		})

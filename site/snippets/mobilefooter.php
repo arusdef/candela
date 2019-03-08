@@ -1,4 +1,4 @@
-<section>
+<section class="mobile_footer">
 	<div class="logo_up">
 		<img src="assets/icons/candela_icon.svg">
 	</div>

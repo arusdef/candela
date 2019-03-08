@@ -216,6 +216,11 @@ header{
 
 /* FOOTER */
 
+.mobile_footer{
+	display: none;
+	opacity: 0;
+}
+
 .logo_up{
 	display: none;
 	width: 100%;
@@ -495,9 +500,6 @@ main{
 	font-size: 0;
 	transition: filter 0.4s ease-in;
 	will-change: filter;
-	scroll-behavior: smooth;
-	scroll-behavior: -webkit-smooth;
-	-webkit-scroll-behavior: smooth;
 }
 
 main.video{
@@ -749,8 +751,6 @@ h1{
 .candela_section.last_section{
 	border-bottom: none;
 }
-
-
 
 
 .current_section{
@@ -1126,6 +1126,7 @@ a.small_section .sub_fader{
 		z-index: 9999999999999999999;
 	}
 
+	.mobile_footer{ display: block; }
 	.logo_up{ display: block; }
 	.mobile_brochure{ display: block; }
 
@@ -1278,6 +1279,10 @@ a.small_section .sub_fader{
 		overflow: initial;
 	}
 
+	.current_section .sub_fader{
+		height: 100%;
+	}
+
 	.candela_section.current_section{
 		height: auto;
 		font-size: 0.75rem;
@@ -1308,7 +1313,6 @@ a.small_section .sub_fader{
 	.column_text h2{
 		line-height: 1.1rem;
 	}
-	
 
 	.section_carousel{
 		position: relative;
