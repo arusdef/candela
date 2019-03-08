@@ -1,7 +1,7 @@
-<section class="candela_section current_section">
+<section class="candela_section current_section <?= $lastsection ?>">
 	<div class="sub_fader"></div>
-	<h1><?= $section->title()->html()
-		?><?php if($section->sectionsubtitle()->isNotEmpty()): 
+	<h1 class="current_section_title"><a href="<?= $site->url() ?>" id="close_section"><?= $section->title()->html()
+		?></a><?php if($section->sectionsubtitle()->isNotEmpty()): 
 				?>: <span class="section_subtitle"><?= $section->sectionsubtitle()->html() ?></span>
 		<?php endif ?>
 	</h1>
@@ -11,7 +11,7 @@
 
 	<div class="section_carousel">
 		<?php foreach ($section->sectionslides()->toStructure() as $slide): ?>
-			<div class="section_carousel_cell <?= 'target_slide-'.$slide->fulltitle() ?>" >
+			<div class="section_carousel_cell <?= 'target_slide-'.$slide->fulltitle() ?> <?= 'slide_type_'.$slide->selectcontent() ?>" >
 				<?php snippet('slides/'.$slide->selectcontent(), ['slidetexttitle' => $slide->textualtitle(), 'slidetext' => $slide->textualcontent(), 'slideimage' => $slide->imagecontent(), 'slidecaption' => $slide->imagecaption(), 'secondslideimage' => $slide->secondimagecontent(), 'secondslidecaption' => $slide->secondimagecaption(), 'slidevideo' => $slide->videocontent()]) ?>
 			</div>
 		<?php endforeach ?>

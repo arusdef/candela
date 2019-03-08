@@ -1,4 +1,4 @@
-<a href="<?= $sectionurl ?>" class="candela_section small_section width_<?= $sectionsize ?>" id="<?= $sectiontitle->slug() ?>">
+<a href="<?= $sectionurl ?>" class="candela_section small_section width_<?= $sectionsize ?> <?= $lastsection ?>" id="<?= $sectiontitle->slug() ?>">
 	<div class="sub_fader"></div>
 	<h3><?= $sectiontitle->html() 
 	?><?php if($sectionsubtitle->isNotEmpty()): ?>: 

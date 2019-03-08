@@ -146,3 +146,10 @@ columns:
             label: Favicon
             type: files
             query: site.images
+
+          additionalsection:
+            label: Additional Inputs
+            type: headline
+          weatherchannelurl:
+            label: Weather Channel URL
+            type: url

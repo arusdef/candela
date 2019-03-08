@@ -6,6 +6,8 @@ var Site = {};
 Site.targetPage = "";
 Site.targetSlide = "";
 Site.loaded = false;
+Site.activeSlideIndex = 0;
+Site.activeSlideCount = 0;
 
 Site.weather = function(){
 	$.ajax({
@@ -19,9 +21,17 @@ Site.weather = function(){
 	  		weathericonId = results.weather[0].icon,
 	  		idOptions = ["01d", "01n", "02d", "02n", "800"];
 
+	  var $mobileweather = $("#mobile_weather"),
+	  		templink = $mobileweather.attr("data-link");
+
 	  if(idOptions.includes(weathericonId)){ // append sun icon
 	  	$("#temp").find("h3").removeClass("cloudy")
+	  	$mobileweather.addClass("sunny")
 	  }
+
+	  //mobile
+		$mobileweather.html("<a href='" + templink + "' target='_blank'>Current Temperature in Tulum: " + fahrenheit + "ºF | " + celsius + "ºC</a>");
+	  // desktop
 	  TweenMax.to($(".current_temp"), 0.2, {opacity: 1})
 	  $("#fahrenheit").html(fahrenheit + "º ").addClass("active")
 	  $(".current_temp").on('click', function(){
@@ -34,9 +44,9 @@ Site.weather = function(){
   			$("#celsius").html("")
   		}
 	  })
+
 	});
 }
-
 
 Site.bottomPosition = function(footer){
 	if($(window).outerWidth() < 768){
@@ -62,7 +72,7 @@ Site.footer = function(){
 	})
 
 	// trailer on load
-	if($("#vimeo_video").hasClass("show")){
+	if($("#vimeo_video").hasClass("show") && !Site.loaded){
 		$("#trailer_tab").addClass("active")
 		setTimeout(function(){
 			$("main").addClass("video")	
@@ -74,7 +84,7 @@ Site.footer = function(){
 	}
 
 	// trailer
-	$("#trailer_tab, #exit_video, .mobile_trailer").on('click', function(){
+	var closeTrailer = function(){
 		$("#contact_tab, #contact_section").removeClass('active')
 		$("#trailer_tab").toggleClass("active")
 		$("main").toggleClass("video")
@@ -83,11 +93,24 @@ Site.footer = function(){
 			$("#vimeo_video").toggleClass("show")
 			$("#vimeo_video").toggleClass("revealed")
 		}, 420)
+	}
 
+	$("#trailer_tab, #exit_video, .mobile_trailer").on('click', function(){
+		closeTrailer();
+	})
+
+	document.addEventListener('keydown', function(e){
+		if(e.key == "Escape" || e.key == "escape" || e.key == "ESCAPE"){
+			closeTrailer()
+		}
 	})
 
 	$(".logo_up").on('click', function(){
-		$("main").scrollTop(0)
+		TweenMax.to($(".logo_up").find("img"), 0.75, {rotation: 180, onComplete: function(){
+			$("main").animate({ scrollTop: 0 }, 1000);
+			TweenMax.set($(".logo_up").find("img"), {clearProps: "all"})
+			}
+		})
 	})
 
 }
@@ -99,8 +122,14 @@ Site.lotsOfImagesWrapper = function($this){
 		totalLength += imageWrapper.outerWidth(true);
 	})
 	$this.css({"width" : totalLength + "px"});
-}
 
+	if(totalLength < $(window).innerWidth()*0.82){
+		$this.css({"left" : "18vw"});		
+	}else{
+		$this.css({"left" : "auto", "right" : "0"});		
+	}
+
+}
 
 Site.lotsOfImages = function(){
 	$(".lots_of_images").each(function(index){
@@ -131,12 +160,44 @@ Site.lotsOfImages = function(){
 	})
 }
 
+Site.arrowNav = function(){
+
+	document.addEventListener('keydown', function(e){
+		console.log(e.key, "activeSlideIndex: ", Site.activeSlideIndex)
+
+
+		if($(".barba-container").attr("id") != "section_page"){
+			return
+		}
+
+		if(e.key == "ArrowUp" || e.key == "arrowup" || e.key == "ARROWUP" || (e.key == "ArrowLeft" && Site.activeSlideIndex == 0)){
+			var newTarget = $(".current_section").prev(".small_section"),
+					newUrl = newTarget.attr("href");
+			Site.targetPage = newTarget.attr("id");
+			Site.activeSlideIndex = 0;
+			Site.activeSlideCount = 0;
+			if(newUrl != undefined){ Barba.Pjax.goTo(newUrl)}
+
+		}else if(e.key == "ArrowDown" || e.key == "arrowdown" || e.key == "ARROWDOWN" || (e.key == "ArrowRight" && Site.activeSlideIndex == Site.activeSlideCount - 1)){
+			var newTarget = $(".current_section").next(".small_section"),
+					newUrl = newTarget.attr("href");
+			Site.targetPage = newTarget.attr("id");
+			Site.activeSlideIndex = 0;
+			Site.activeSlideCount = 0;
+			if(newUrl != undefined){ Barba.Pjax.goTo(newUrl)}	
+		}
+
+	})
+
+}
+
 
 // basic barba:
 Site.homepage = Barba.BaseView.extend({
   namespace: 'home_page',
   onEnter: function() {
   	Site.targetPage = ""; // reset target link from homepage
+  	$("#logomark").removeClass("open")
   },
   onEnterCompleted: function() {
     if(!Site.loaded){ // if first session load
@@ -157,7 +218,6 @@ Site.homepage = Barba.BaseView.extend({
     // determine target slide
     $(".image_wrapper").on('click', function(){
 			Site.targetSlide = ($(this).attr("data-target-slide").length > 0 ? $(this).attr("data-target-slide") : "");
-
 		})
 
     // determine animation focus element
@@ -172,32 +232,29 @@ Site.section = Barba.BaseView.extend({
   namespace: 'section_page',
   onEnter: function() {
 		Site.targetPage = ""; // reset target link from homepage
+		$("#logomark").addClass("open")
   },
   onEnterCompleted: function(){
-
 		$("a").on('click', function(){
 			Site.targetPage = (($(this).attr("id") != null || $(this).attr("id") != undefined)? $(this).attr("id") : "");
-			
 		})
-
-  	// run slideshow if not mobile
+  	
   	TweenMax.to($(".sub_fader"), 0.4, {opacity: 0, ease: Power4.easeIn})
   	
   	var $carousel = $('.section_carousel');
 
   	if(window.innerWidth > 768){
-
   		Site.carousel = true;
-
   		$carousel.flickity({
 			  // options
 			  cellAlign: 'center',
 			  contain: true,
-			  wrapAround: true,
+			  wrapAround: false,
 			  cellSelector: '.section_carousel_cell',
 			  prevNextButtons: false
 			})
-  		
+
+			$carousel.focus();
   		$carousel.on( 'change.flickity', function( event, index ) {
   			$(".slide_counter_current_slide").html(index+1)
 			})
@@ -208,6 +265,27 @@ Site.section = Barba.BaseView.extend({
 				Site.targetSlide = "";
 			}
 
+			// get current index. 
+			// update index on select change. 
+			// if arrowLeft si clicked when index = 0
+			// if arrowRight is clicked when index = max-1
+
+			var flkty = $carousel.data('flickity');
+			Site.activeSlideCount = flkty.slides.length;
+
+			$carousel.on( 'settle.flickity', function(event, index){
+					
+					console.log(event, index, flkty.slides.length)
+					Site.activeSlideIndex = index;
+					
+					console.log("activeSlideIndex: ", Site.activeSlideIndex)
+
+					
+			});
+
+
+
+
   	}else{
 			// scroll to on mobile
 			$("main").scrollTop($(".candela_section.current_section").index()*$(".small_section").first().outerHeight())
@@ -215,11 +293,11 @@ Site.section = Barba.BaseView.extend({
 
   	// always initialized for window resize accounting
   	$(".next").on('click', function(){
-			$carousel.flickity('next', true)
+			$carousel.flickity('next', false)
 		})
 
 		$(".previous").on('click', function(){
-			$carousel.flickity('previous', true)
+			$carousel.flickity('previous', false)
 		})
 
   	$(window).resize(function(){
@@ -247,10 +325,6 @@ Site.section = Barba.BaseView.extend({
   			Site.carousel = false;
   		}
   	})
-
-  },
-  onLeave: function(){
-
   }
 });
 
@@ -305,6 +379,7 @@ var interSubpageTransition = Barba.BaseTransition.extend({
 	start: function(){
 		var _this = this;
 		var targetId = "#" + Site.targetPage;
+		console.log(Site.targetPage);
 		_this.newContainerLoading
 		.then(function(){
 			var $oldContainer = $("#" + _this.oldContainer.id);
@@ -372,17 +447,19 @@ window.onload = function(){
 	Site.homepage.init();
 	Site.section.init();
 	Barba.Pjax.start();
+
+	Site.weather();
+	Site.footer();
+	Site.arrowNav();
 	Site.loaded = true; //update site session status
 
-	//Site.weather();
-	Site.footer();
 
 
 	Barba.Pjax.getTransition = function() {
 		var currentPage = $(".barba-container").attr("id");
 
 		if(currentPage != "home_page"){
-			if(Site.targetPage == "wordmark" || Site.targetPage == "logomark"){
+			if(Site.targetPage == "wordmark" || Site.targetPage == "logomark" || Site.targetPage == "close_section"){
 				return homepageTransition; // to homepage
 			}else{
 				return interSubpageTransition; // subpage to subpage

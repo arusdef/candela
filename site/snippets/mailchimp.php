@@ -2,19 +2,15 @@
 <div id="mc_embed_signup">
 	<form action="https://candela.us20.list-manage.com/subscribe/post?u=c8388ed325757d81671bf4904&amp;id=dfe4278efc" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
     <div id="mc_embed_signup_scroll">
-			<h2><?= $site->contactsubscribeheader()->html()?></h2>
-			<div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+			<p><?= $site->contactsubscribeheader()->html()?></p>
 			<div class="mc-field-group">
-				<label class="form_name" for="mce-EMAIL">Email Address <span class="asterisk">*</span></label
-					><input class="form_entry" type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+				<input class="form_entry" type="email" placeholder="Email Address*"value="" name="EMAIL" class="required email" id="mce-EMAIL">
 			</div>
 			<div class="mc-field-group">
-				<label class="form_name" for="mce-FNAME">Name </label
-					><input class="form_entry" type="text" value="" name="FNAME" class="" id="mce-FNAME">
+				<input class="form_entry" type="text" value="" placeholder="Name" name="FNAME" class="" id="mce-FNAME">
 			</div>
 			<div class="mc-field-group size1of2">
-				<label class="form_name" for="mce-MMERGE6">Phone Number </label
-					><input class="form_entry" type="text" name="MMERGE6" class="" value="" id="mce-MMERGE6">
+				<input class="form_entry" type="text" placeholder="Phone number" name="MMERGE6" class="" value="" id="mce-MMERGE6">
 			</div>
 			<div id="mce-responses" class="clear">
 				<div class="response" id="mce-error-response" style="display:none"></div>

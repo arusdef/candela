@@ -42,14 +42,19 @@
 
 <header class="sliver <?= $pagecount ?>">
 	<div class="header_section" id="temp">
-		<h3 class="cloudy">Current Temperature in Tulum
+		<h3 class="cloudy">
+			<?php if($site->weatherchannelurl()->isNotEmpty()): ?>
+			<a href="<?= $site->weatherchannelurl()->html() ?>" target="_blank">Current Temperature in Tulum</a>
+			<?php else: ?>
+				Current Temperature in Tulum
+			<?php endif ?>
 			<span class="current_temp">
 				<span class="temperature_display" id="fahrenheit"></span> / <span class="temperature_display" id="celsius"></span>
 		</span>
 		</h3>
 	</div>
 	<a class="header_section" id="wordmark" href="<?= $site->url() ?>"></a>
-	<a class="header_section" id="logomark" href="<?= $site->url() ?>">
+	<a class="header_section <?= $open ?>" id="logomark" href="<?= $site->url() ?>">
 		<?php snippet('icon') ?>
 	</a>
 </header>

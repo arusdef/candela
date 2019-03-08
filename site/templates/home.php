@@ -1,4 +1,4 @@
-<?php snippet('header') ?>
+<?php snippet('header', ['open' => '']) ?>
 <div class="barba-container" id="home_page" data-namespace="home_page">
 	<?php foreach($site->index()->filterBy('template', 'section') as $page): 
 					if(!$page->isDraft()):
