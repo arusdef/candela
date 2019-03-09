@@ -19,6 +19,7 @@ fields:
     type: files
     width: 1/2
     multiple: false
+    
   sectionpreviewfull:
     label: Desktop Preview Images (Updated)
     type: structure

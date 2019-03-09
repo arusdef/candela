@@ -11,8 +11,8 @@
 				<?php endif ?>
 			</h1>
 			
-			<?php if($page->sectionpreview()->isNotEmpty()): ?>
-				<?php if($page->sectionpreview()->toFiles()->count() > 7): ?>
+			<?php if($page->sectionpreviewfull()->isNotEmpty()): ?>
+				<?php if($page->sectionpreviewfull()->toStructure()->count() > 7): ?>
 					<div class="desktop_preview lots_of_images">
 				<?php else: ?>
 					<div class="desktop_preview">
