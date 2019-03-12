@@ -1,5 +1,5 @@
 /* candela */
-/* site by lukas eigler-harding */
+/* site dev by lukas eigler-harding */
 
 var Site = {};
 
@@ -98,7 +98,9 @@ Site.footer = function(){
 
 	document.addEventListener('keydown', function(e){
 		if(e.key == "Escape" || e.key == "escape" || e.key == "ESCAPE"){
-			closeTrailer()
+			if($("#trailer_tab").hasClass("active")){
+				closeTrailer();
+			}
 		}
 	})
 
@@ -238,7 +240,7 @@ Site.section = Barba.BaseView.extend({
 			Site.targetPage = (($(this).attr("id") != null || $(this).attr("id") != undefined)? $(this).attr("id") : "");
 		})
   	
-  	TweenMax.to($(".sub_fader"), 0.4, {opacity: 0, ease: Power4.easeIn})
+  	TweenMax.to($(".sub_fader"), 0.2, {opacity: 0, ease: Power4.easeIn})
   	TweenMax.to($(".mobile_footer"), 0.4, {opacity: 1, ease: Power4.easeIn})
   	
   	var $carousel = $('.section_carousel');
@@ -336,7 +338,10 @@ var subpageTransition = Barba.BaseTransition.extend({
 
 			// fade out title and content
 			TweenMax.to($(".fader"), 0.4, {opacity: 1, ease: Power3.easeIn})
-			TweenMax.to($("h1"), 0.4, {opacity: 0, ease: Power3.easeIn})
+			if($(window).innerWidth() > 768){
+
+				TweenMax.to($("h1"), 0.4, {opacity: 0, ease: Power3.easeIn})
+			}
 			// resize containers
 			$oldContainer.find(".section_link").each(function(){
 				if($(this).attr('id') == targetSection){
@@ -373,13 +378,19 @@ var interSubpageTransition = Barba.BaseTransition.extend({
 			var $oldContainer = $("#" + _this.oldContainer.id);
 			var count = (($("main").hasClass("seven")) ? 7 : 8),
 					distributedFooterHeight = $("footer").outerHeight()/count,
-					targetSectionHeight = ($(window).outerHeight()*0.7) - distributedFooterHeight,
-					smallSectionHeight = ((($(window).outerHeight()*0.3) - $("header").outerHeight())/(count - 1)) - distributedFooterHeight;
+					targetSectionHeight = (($(window).innerWidth() > 768 ) ? ($(window).outerHeight()*0.7) - distributedFooterHeight : $(window).outerHeight()),
+					smallSectionHeight =  (($(window).innerWidth() > 768 ) ? ((($(window).outerHeight()*0.3) - $("header").outerHeight())/(count - 1)) - distributedFooterHeight : $(".small_section").first().outerHeight());
 
 			if(window.innerWidth < 768){ 
-				TweenMax.to($(targetId).find("h3"), 0.4, {opacity: 0, ease: Power3.easeIn}) 
+				$("h3").each(function(){
+					// console.log("#" + $(this).parent().attr("id"), targetId)
+					if("#" + $(this).parent().attr("id") != targetId){
+						TweenMax.to($(this), 0.4, {opacity: 0, ease: Power3.easeIn}) 
+					}
+				})
 			}
-			TweenMax.to($(".sub_fader"), 0.4, {opacity: 1, ease: Power3.easeIn})
+			TweenMax.to($(targetId).find(".sub_fader"), 0.4, {opacity: 1, ease: Power3.easeIn})
+			TweenMax.to($(".current_section").find(".sub_fader"), 0.4, {opacity: 1, ease: Power3.easeIn})
 			TweenMax.to($(".section_carousel"), 0.4, {opacity: 0, ease: Power3.easeIn})
 			TweenMax.to($(".mobile_footer"), 0.4, {opacity: 0, ease: Power3.easeIn})
 			TweenMax.to($(".slide_button"), 0.4, {opacity: 0, ease: Power3.easeIn})

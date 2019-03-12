@@ -1,64 +1,23 @@
 # Candela
 
 Site by Íñigo Lopez and Lukas Eigler-Harding
+- idea: "smart brochure"
 
+## build edits
+### mobile
+- [x] compressed if no mobile image!!
+- [x] arrow
+- [x] make type not fading
+- [x] keep same size
+- [x] gradient w/ catching title
+- [x] tab when contact is open should be golden
+- [x] possible bug w/ trailer on closing
 
-## to do
-- [x] backend forms
-	- [x] accounts
-- [x] panel install online
-- [ ] front end dev
-- [x] letsencrypt https
+### desktop
+- [ ] arrow keys (bug)
+- [x] esc
+- [x] keep sections that aren't moving from fading
 
-
-## build
-- [ ] candela logo animation
-
-## extra dev
-- [x] magnified image seems wrong
-- [x] image captions size? 
-- [x] contact forms (prefer just a sign-up at most)
-- [ ] 3 column seems too much? (i can offer two column images)
-
-## edits
-- [x] slide typeface
-- [x] desktop size of logo
-- [ ] firefox shrinks svgs?
-
-## approach
-
-- each section is it's own page (has it's own url)
-	- The project
-	- Estate specification
-	- Architecture
-	- Design
-	- The ecosystem
-	- Amenities
-	- Location
-	- Investment
-
-- each project has
-	- a title
-	- whether it's 1/2 or full width
-	- files to upload
-	- slides
-		- text field
-		- image field
-		- image caption
-	- pinned image
-	- visible image list
-
-site has sections
-- contact
-	- title
-	- textfield
-	- image options
-- brochure
-	- pdf link (maybe build out w/ pdf.js)
-- trailer
-	- vimeo link
-	- whether to show field
-	- whether to have pop up on home page
-
-	
+### known bugs
+- [ ] firefox stretches svgs
 

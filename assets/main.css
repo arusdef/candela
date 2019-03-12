@@ -592,7 +592,7 @@ h1 .section_subtitle{
 	height: calc(12.5vh - 0.2875vw);
 	user-select: none;
 	pointer-events: none;
-	z-index: 100000000000000;
+	z-index: 90000000000000;
 	opacity: 1;
 	background-color: white;
 }
@@ -1139,6 +1139,10 @@ a.small_section .sub_fader{
 		background-color: inherit;
 	}
 
+	.footer_section.active{
+		background-color: #C3A678;
+	}
+
 	.footer_section:first-of-type{
 		padding-left: 0.75rem;
 	}
@@ -1225,13 +1229,18 @@ a.small_section .sub_fader{
 		height: 6rem;	
 	}
 
+	.sliver:hover h1{
+		color: #424142;
+	}
+
 
 
 	.gradient{
 		width: 100vw;
 	}
 
-	main.seven .sliver.section_link.width_half, .sliver.section_link.width_half{
+	main.seven .sliver.section_link.width_half, .sliver.section_link.width_half,
+	main.seven .sliver.section_link.mobile_width_half, .sliver.section_link.mobile_width_half{
 		height: 2rem;	
 		width: 100%;
 	}
@@ -1239,6 +1248,29 @@ a.small_section .sub_fader{
 	.sliver.section_link.width_full{
 		position: relative;
 	}
+
+	.section_link:after, .small_section:after{
+		content: "";
+		position: absolute;
+		top: 1rem;
+		right: 0.5rem;
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+		background-position: center;
+		background-image: url('icons/candela_open.svg');
+		width: 1rem;
+		height: 1rem;
+		transition: transform 0.5s;
+	}
+
+	.small_section:hover:after{
+		transform: rotate(90deg);
+	}
+
+	.section_link.mobile_width_half:after, .small_section.mobile_width_half:after{
+		top: 0.5rem;
+	}
+
 
 	.desktop_preview{
 		display: none;
@@ -1250,29 +1282,60 @@ a.small_section .sub_fader{
 
 	/* SUBPAGE SECTIONS */
 
-	.candela_section.small_section.width_half, .candela_section.small_section.width_full{
+	.candela_section.small_section.width_half, 
+	.candela_section.small_section.width_full,
+	.sliver.width_full{
 		width: 100%;
-		display: flex;
-		flex-direction: column;
-  	justify-content: center;
+		display: block;
 	}
 
-	.candela_section.small_section.width_half, .candela_section.small_section.width_half .sub_fader{ height: 2rem; }
+	
+
+
 	.candela_section.small_section.width_full, .candela_section.small_section.width_full .sub_fader{ height: 6rem; }
+
+	.candela_section.small_section.width_half, 
+	.candela_section.small_section.width_half .sub_fader,
+	.candela_section.small_section.width_full.mobile_width_half,
+	.candela_section.small_section.width_full.mobile_width_half .sub_fader{ 
+		height: 2rem; 
+	}
+
 
 	.small_section, .candela_section.small_section:last-of-type{
 		border-bottom: 1px solid #ADAAAD;
 	}
 
 	.sliver.section_link.width_full h1, .sliver.section_link.width_half h1{
-		font-size: 0.75rem;
+		font-size: 1rem;
 	} 
 
-	.small_section h3{
+	.small_section h3,
+	.sliver.width_full h1{
 		position: absolute;
 		padding-left: 0.75rem;
-		font-size: 0.75rem;
+		font-size: 1rem;
+		letter-spacing: 0.01rem;
+		line-height: 1.2rem;
+		padding-top: 1rem;
     font-weight: normal;
+    max-width: 50%;
+    z-index: 90000000000001;
+	}
+
+	.sliver.width_full h1, .sliver.width_half h1{padding-left: 0;}
+
+	.width_half h3, .mobile_width_half h3, .sliver.mobile_width_half h1{
+		padding-top: 0.35rem;
+		max-width: calc(100% - 1.5rem);
+	}
+
+	.small_section img, .sliver img{
+		position: absolute;
+		right: 1rem;
+		top: 1rem;
+		object-position: right top;
+		max-width: calc(50% - 1rem);
 	}
 
 	.current_section{
@@ -1300,15 +1363,49 @@ a.small_section .sub_fader{
 		padding-left: 0.75rem;
 		padding-bottom: 0.75rem;
 		margin-bottom: 0.75rem;
+		z-index: 90000000000001;
 	}
+
+	
 
 	.candela_section.current_section h1.current_section_title{
 		position: -webkit-sticky;
 		position: sticky;
 		left: 0;
 		top: 0;
-		background-color: white;
+		background: white;
+		color: #C3A678;
+		background: linear-gradient(white, white, rgba(255,255,255,0.8), rgba(255,255,255,0));
 	}
+
+	.candela_section.current_section h1.current_section_title a{
+		position: relative;
+		color: #C3A678;
+	}
+
+
+	.candela_section.current_section h1.current_section_title a:after{
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 1rem;
+		height: 1rem;
+		background-repeat: no-repeat;
+		background-size: 100%;
+		background-position: center;
+		background-image: url('icons/candela_close.svg');
+		transition: transform 0.5s;
+	}
+
+	.candela_section.current_section h1.current_section_title a:hover:after{
+		transform: rotate(-90deg);
+	}
+
+	#the-location.candela_section.current_section h1.current_section_title a:hover:after{
+		transform: rotate(0deg);
+	}
+
 
 	.column_text h2{
 		line-height: 1.1rem;

@@ -1,8 +1,8 @@
 <?php snippet('header', ['open' => '']) ?>
 <div class="barba-container" id="home_page" data-namespace="home_page">
 	<?php foreach($site->index()->filterBy('template', 'section') as $page): 
-					if(!$page->isDraft()):
-	?><a href="<?= $page->url() ?>" id="<?= $page->title()->slug() ?>" class="sliver section_link width_<?= $page->sectionsize()->html() ?>">
+			if(!$page->isDraft()):
+	?><a href="<?= $page->url() ?>" id="<?= $page->title()->slug() ?>" class="sliver section_link <?= 'width_'.$page->sectionsize()->html() ?> <?= ($page->sectionpinned()->isNotEmpty() ? '' : 'mobile_width_half') ?>">
 			<div class="fader"></div>
 			<div class="gradient"></div>
 			<h1><?= $page->title()->html() 
