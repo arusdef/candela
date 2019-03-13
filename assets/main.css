@@ -780,7 +780,7 @@ h1{
 }
 
 .current_section .sub_fader{
-	height: calc(70vh - 0.2875vw);	
+	height: 100%;	
 }
 
 a.small_section:hover{
@@ -1094,6 +1094,32 @@ a.small_section .sub_fader{
 	border-right: 1px solid #ADAAAD;	
 }
 
+@media(min-width: 769px){
+
+	.small_section.width_half{
+		z-index: 10000;
+	}
+
+	.current_size_half + .small_section.width_half{
+		margin-top: calc(-2.9vh + 0.2875vw);
+		margin-left: 50%;
+		border-top: 1px solid #ADAAAD;	
+		border-left: 1px solid #ADAAAD;	
+		border-right:none;	
+
+	}
+	/*.seven */
+	.seven .current_size_half + .small_section.width_half{
+		margin-top: calc(-3.142vh + 0.32857vw);
+	}
+
+	.small_section.width_half + .current_size_half{
+		height: 67.1vh;
+	}
+
+}
+
+
 .small_section .mobile_preview{
 	filter: saturate(1%);
 }
@@ -1327,6 +1353,10 @@ a.small_section .sub_fader{
     font-weight: normal;
     max-width: 50%;
     z-index: 90000000000001;
+	}
+
+	.sliver.width_half:nth-of-type(2n){
+		border-left: none;
 	}
 
 	.sliver.width_full h1, .sliver.width_half h1{padding-left: 0;}

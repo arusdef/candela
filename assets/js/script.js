@@ -9,6 +9,7 @@ Site.loaded = false;
 Site.slideTransition = false;
 Site.activeSlideIndex = 0;
 Site.activeSlideCount = 0;
+Site.mobileScrollPosition = 0;
 
 Site.weather = function(){
 	$.ajax({
@@ -180,23 +181,14 @@ Site.previousPage = function(){
 
 Site.arrowNav = function(){
 	document.addEventListener('keydown', function(e){
-		if($(".barba-container").attr("id") != "section_page"){
-			return
-		}
-
+		if($(".barba-container").attr("id") != "section_page"){ return }
 		if(e.key == "ArrowUp" || e.key == "arrowup" || e.key == "ARROWUP" || (e.key == "ArrowLeft" && Site.activeSlideIndex == 0)){
 			Site.previousPage()
-
 		}else if(e.key == "ArrowDown" || e.key == "arrowdown" || e.key == "ARROWDOWN" || (e.key == "ArrowRight" && Site.activeSlideIndex == Site.activeSlideCount - 1)){
 			Site.nextPage()
 		}
-
 	})
-
-
-
 }
-
 
 // basic barba:
 Site.homepage = Barba.BaseView.extend({
@@ -216,7 +208,8 @@ Site.homepage = Barba.BaseView.extend({
     	})
     }else{ // if visiting the homepage through another page of the site	
     	if(window.innerWidth < 768){
-	    	$("main").scrollTop(0)
+	    	$("main").scrollTop(Site.mobileScrollPosition)
+	    	Site.mobileScrollPosition = 0; //reset
 	    }
     	TweenMax.to($(".fader"), 0.3, {opacity: 0, ease: Power4.easeIn})
     }
@@ -253,7 +246,6 @@ Site.section = Barba.BaseView.extend({
   	TweenMax.to($(".mobile_footer"), 0.4, {opacity: 1, ease: Power4.easeIn})
   	
   	var $carousel = $('.section_carousel');
-
   	if(window.innerWidth > 768){
   		Site.carousel = true;
   		$carousel.flickity({
@@ -287,8 +279,6 @@ Site.section = Barba.BaseView.extend({
 					Site.activeSlideIndex = index;
 					Site.slideTransition = false;
 			});
-
-
   	}else{
 			// scroll to on mobile
 			$("main").scrollTop($(".candela_section.current_section").index()*$(".small_section").first().outerHeight())
@@ -337,8 +327,6 @@ Site.section = Barba.BaseView.extend({
   }
 });
 
-/* for mobile, we need to open and then scroll to */
-
 // from homepage to a subpage 
 var subpageTransition = Barba.BaseTransition.extend({
 	start: function(){
@@ -356,21 +344,29 @@ var subpageTransition = Barba.BaseTransition.extend({
 					targetSectionHeight = (( $(window).innerWidth() > 768 ) ? ($(window).outerHeight()*0.7) - distributedFooterHeight : $(window).outerHeight()),
 					smallSectionHeight = (( $(window).innerWidth() > 768 ) ? ((($(window).outerHeight()*0.3) - $("header").outerHeight())/(count - 1)) - distributedFooterHeight : $(".section_link").first().outerHeight());
 
-			// fade out title and content
-			TweenMax.to($(".fader"), 0.4, {opacity: 1, ease: Power3.easeIn})
+			// fade out title and content if desktop
 			if($(window).innerWidth() > 768){
-
-				TweenMax.to($("h1"), 0.4, {opacity: 0, ease: Power3.easeIn})
+				TweenMax.to($(".fader"), 0.4, {opacity: 1, ease: Power3.easeIn})
+				TweenMax.to($("h1"), 0.4, {opacity: 0, ease: Power3.easeIn})			
+				// resize containers
+				$oldContainer.find(".section_link").each(function(){
+					if($(this).attr('id') == targetSection){
+						TweenMax.to($(this), 0.6, {height: targetSectionHeight, ease: Power3.easeIn})
+						TweenMax.to($(this).find(".mobile_preview"), 0.3, {opacity: 0, ease: Power3.easeIn})
+					}else{
+						TweenMax.to($(this), 0.6, {height: smallSectionHeight, ease: Power3.easeIn})
+					}
+				})
+			}else{
+				// mobile transition
+				$("main").animate({
+					scrollTop:  $("main").scrollTop() + $("#" + targetSection).position().top
+				}, 500, function(){
+					TweenMax.to($("#" + targetSection), 0.6, {height: targetSectionHeight, ease: Power3.easeIn})
+					TweenMax.to($("#" + targetSection).find(".mobile_preview"), 0.3, {opacity: 0, ease: Power3.easeIn})
+				})
 			}
-			// resize containers
-			$oldContainer.find(".section_link").each(function(){
-				if($(this).attr('id') == targetSection){
-					TweenMax.to($(this), 0.6, {height: targetSectionHeight, ease: Power3.easeIn})
-					TweenMax.to($(this).find(".mobile_preview"), 0.3, {opacity: 0, ease: Power3.easeIn})
-				}else{
-					TweenMax.to($(this), 0.6, {height: smallSectionHeight, ease: Power3.easeIn})
-				}
-			})
+			
 
 			setTimeout(function(){
 				_this.done();
@@ -446,13 +442,36 @@ var homepageTransition = Barba.BaseTransition.extend({
 			var $oldContainer = $("#" + _this.oldContainer.id);
 			var count = (($("main").hasClass("seven")) ? 7 : 8),
 					distributedFooterHeight = $("footer").outerHeight()/count,
-					targetHeight = (( $(window).innerWidth() > 768 ) ? ($(window).outerHeight()/count) - distributedFooterHeight : $(".small_section").first().outerHeight());
+					targetHeight = ($(window).outerHeight()/count) - distributedFooterHeight;
 
 			TweenMax.to($($oldContainer).find(".sub_fader"), 0.4, {opacity: 1, ease: Power3.easeIn})
 			TweenMax.to($(".section_carousel"), 0.4, {opacity: 0, ease: Power3.easeIn})
 			TweenMax.to($(".mobile_footer"), 0.4, {opacity: 0, ease: Power3.easeIn})
 			TweenMax.to($($oldContainer).find(".slide_button"), 0.4, {opacity: 0, ease: Power3.easeIn})
-			TweenMax.to($($oldContainer).find(".candela_section"), 0.6, {delay: 0.4, height: targetHeight})
+
+			if(window.innerWidth > 768){
+				TweenMax.to($($oldContainer).find(".candela_section"), 0.6, {delay: 0.4, height: targetHeight})
+			}else{
+				// mobile transition
+				var currentTarget = $(($oldContainer).find(".candela_section.current_section"));
+				targetHeight = $(".small_section").first().innerHeight();
+
+				// scroll to top of this section
+				$("main").animate({
+					scrollTop:  $("main").scrollTop() + currentTarget.position().top
+				}, 200)
+
+				TweenMax.to(currentTarget, 0.6, {delay: 0.4, height: targetHeight})
+
+				var currentIndex = $(".candela_section.current_section").index(),
+				height = 0;
+				$(".candela_section").each(function(){
+					if($(this).index() < currentIndex){
+						height += $(this).innerHeight();
+					}
+				})
+				Site.mobileScrollPosition = height + 3;
+			}
 
 
 			setTimeout(function(){
@@ -463,7 +482,6 @@ var homepageTransition = Barba.BaseTransition.extend({
 				TweenMax.set($(".sub_fader"), {clearProps: "all"})
 				TweenMax.set($(".slide_button"), {clearProps: "all"})
 				TweenMax.set($(".section_carousel"), {clearProps: "all"})
-				// TweenMax.set($(".mobile_footer"), {clearProps: "all"})
 			}, 1000)
 		
 		})
@@ -478,7 +496,7 @@ window.onload = function(){
 	Site.section.init();
 	Barba.Pjax.start();
 
-	Site.weather();
+	// Site.weather();
 	Site.footer();
 	Site.arrowNav();
 	Site.loaded = true; //update site session status

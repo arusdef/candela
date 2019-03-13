@@ -1,4 +1,4 @@
-<section class="candela_section current_section <?= $lastsection ?>">
+<section class="candela_section current_section <?= $lastsection ?> <?= 'current_size_'.$section->sectionsize() ?>">
 	<div class="sub_fader"></div>
 	<h1 class="current_section_title"><a href="<?= $site->url() ?>" id="close_section"><?= $section->title()->html()
 		?></a><?php if($section->sectionsubtitle()->isNotEmpty()): 
