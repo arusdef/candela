@@ -199,13 +199,10 @@ header{
 	transform: rotate(-180deg);
 }
 
-#logomark:hover #candela_logomark{
-	transform: rotate(-180deg);
+#logomark:hover .logo_icon_black{
+		fill: #C3A678;
 }
 
-#logomark.open:hover #candela_logomark{
-	transform: rotate(0deg);
-}
 
 @media(max-height: 800px){
 	#candela_logomark{
@@ -292,6 +289,10 @@ footer{
 	background-color: white;
 	border-top: 1px solid #ADAAAD;
 	display: flex;
+}
+
+footer.active{
+	border-top: 1px solid #C3A678;
 }
 
 .footer_section{
@@ -649,6 +650,7 @@ h1 .section_subtitle{
 	opacity: 0.7;
 	margin-right: 0.25rem;
 	background-color: black;
+	margin-bottom: 1.5rem;
 	transition: background-color 0.2s, opacity 0.2s;
 }
 .desktop_preview .image_wrapper:hover{
@@ -978,6 +980,7 @@ h2.slide_counter{
 	font-size: 0.75rem;
 	font-weight: normal;
 	line-height: 1.725rem;
+	color: #989698;
 }
 
 

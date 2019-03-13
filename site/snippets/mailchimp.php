@@ -10,7 +10,7 @@
 				<input class="form_entry" type="text" value="" placeholder="Name" name="FNAME" class="" id="mce-FNAME">
 			</div>
 			<div class="mc-field-group size1of2">
-				<input class="form_entry" type="text" placeholder="Phone number" name="MMERGE6" class="" value="" id="mce-MMERGE6">
+				<input class="form_entry" type="text" placeholder="Phone Number" name="MMERGE6" class="" value="" id="mce-MMERGE6">
 			</div>
 			<div id="mce-responses" class="clear">
 				<div class="response" id="mce-error-response" style="display:none"></div>

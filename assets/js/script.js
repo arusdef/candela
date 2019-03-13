@@ -6,6 +6,7 @@ var Site = {};
 Site.targetPage = "";
 Site.targetSlide = "";
 Site.loaded = false;
+Site.slideTransition = false;
 Site.activeSlideIndex = 0;
 Site.activeSlideCount = 0;
 
@@ -62,6 +63,7 @@ Site.footer = function(){
 	// contact
 	$("#contact_tab").on('click', function(){
 		$(this).toggleClass("active")
+		$("footer").toggleClass("active")
 		$("#contact_section").toggleClass('active')
 		$("#trailer_tab").removeClass("active")
 		$("#vimeo_video").removeClass("show")
@@ -105,11 +107,7 @@ Site.footer = function(){
 	})
 
 	$(".logo_up").on('click', function(){
-		TweenMax.to($(".logo_up").find("img"), 0.75, {rotation: 180, onComplete: function(){
-			$("main").animate({ scrollTop: 0 }, 1000);
-			TweenMax.to($(".logo_up").find("img"), 0.1, {delay: 1, clearProps: "all"})
-			}
-		})
+		$("main").animate({ scrollTop: 0 }, 1000);
 	})
 }
 
@@ -158,33 +156,44 @@ Site.lotsOfImages = function(){
 	})
 }
 
+Site.nextPage = function(){
+	if(!Site.slideTransition){
+		var newTarget = $(".current_section").next(".small_section"),
+				newUrl = newTarget.attr("href");
+		Site.targetPage = newTarget.attr("id");
+		Site.activeSlideIndex = 0;
+		Site.activeSlideCount = 0;
+		if(newUrl != undefined){ Barba.Pjax.goTo(newUrl)}	
+	}
+}
+
+Site.previousPage = function(){
+	if(!Site.slideTransition){
+		var newTarget = $(".current_section").prev(".small_section"),
+				newUrl = newTarget.attr("href");
+		Site.targetPage = newTarget.attr("id");
+		Site.activeSlideIndex = 0;
+		Site.activeSlideCount = 0;
+		if(newUrl != undefined){ Barba.Pjax.goTo(newUrl)}
+	}
+}
+
 Site.arrowNav = function(){
-
 	document.addEventListener('keydown', function(e){
-		// console.log(e.key, "activeSlideIndex: ", Site.activeSlideIndex)
-
 		if($(".barba-container").attr("id") != "section_page"){
 			return
 		}
 
 		if(e.key == "ArrowUp" || e.key == "arrowup" || e.key == "ARROWUP" || (e.key == "ArrowLeft" && Site.activeSlideIndex == 0)){
-			var newTarget = $(".current_section").prev(".small_section"),
-					newUrl = newTarget.attr("href");
-			Site.targetPage = newTarget.attr("id");
-			Site.activeSlideIndex = 0;
-			Site.activeSlideCount = 0;
-			if(newUrl != undefined){ Barba.Pjax.goTo(newUrl)}
+			Site.previousPage()
 
 		}else if(e.key == "ArrowDown" || e.key == "arrowdown" || e.key == "ARROWDOWN" || (e.key == "ArrowRight" && Site.activeSlideIndex == Site.activeSlideCount - 1)){
-			var newTarget = $(".current_section").next(".small_section"),
-					newUrl = newTarget.attr("href");
-			Site.targetPage = newTarget.attr("id");
-			Site.activeSlideIndex = 0;
-			Site.activeSlideCount = 0;
-			if(newUrl != undefined){ Barba.Pjax.goTo(newUrl)}	
+			Site.nextPage()
 		}
 
 	})
+
+
 
 }
 
@@ -270,8 +279,13 @@ Site.section = Barba.BaseView.extend({
 			var flkty = $carousel.data('flickity');
 			Site.activeSlideCount = flkty.slides.length;
 
+			$carousel.on( 'change.flickity', function( event, index ) {
+				Site.slideTransition = true; //safety mechanism for catch
+			})
+
 			$carousel.on( 'settle.flickity', function(event, index){
 					Site.activeSlideIndex = index;
+					Site.slideTransition = false;
 			});
 
 
@@ -283,10 +297,16 @@ Site.section = Barba.BaseView.extend({
   	// always initialized for window resize accounting
   	$(".next").on('click', function(){
 			$carousel.flickity('next', false)
+			if(Site.activeSlideIndex == Site.activeSlideCount - 1){
+				Site.nextPage()
+			}
 		})
 
 		$(".previous").on('click', function(){
 			$carousel.flickity('previous', false)
+			if(Site.activeSlideIndex == 0){
+				Site.previousPage()
+			}
 		})
 
   	$(window).resize(function(){

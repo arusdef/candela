@@ -21,7 +21,7 @@ fields:
     multiple: false
     
   sectionpreviewfull:
-    label: Desktop Preview Images (Updated)
+    label: Desktop Preview Images
     type: structure
     multiple: true
     max: 20

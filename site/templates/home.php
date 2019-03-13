@@ -18,7 +18,7 @@
 					<div class="desktop_preview">
 				<?php endif ?>
 					<?php foreach ($page->sectionpreviewfull()->toStructure() as $preview): ?>
-						<?php if($preview->previewimage()->image()): ?>
+						<?php if($preview->previewimage()->isNotEmpty() && $preview->previewimage()->image()): ?>
 							<span class="image_wrapper"
 							<?php if($preview->targetslide()->isNotEmpty()): ?> 
 								data-target-slide="<?= $preview->targetslide()->first() ?>"
