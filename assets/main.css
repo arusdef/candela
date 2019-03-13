@@ -1267,7 +1267,10 @@ a.small_section .sub_fader{
 		transform: rotate(90deg);
 	}
 
-	.section_link.mobile_width_half:after, .small_section.mobile_width_half:after{
+	.section_link.mobile_width_half:after, 
+	.small_section.mobile_width_half:after,
+	.section_link.width_half:after, 
+	.small_section.width_half:after{
 		top: 0.5rem;
 	}
 
