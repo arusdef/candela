@@ -138,6 +138,11 @@ Site.lotsOfImages = function(){
     })
 
 		$this.parent().on('mouseover', function(e){
+
+			if(window.innerWidth < 768){
+	    	return	
+	    }
+
 			var windowWidth = $(window).innerWidth(),
 					totalImageWidth = $this.outerWidth(),
 					leftdistance = (windowWidth*0.18)/windowWidth,
@@ -152,6 +157,10 @@ Site.lotsOfImages = function(){
 		})
 
 		$this.on('mouseout', function(e){
+			if(window.innerWidth < 768){
+	    	return	
+	    }
+			
 			$this.css({"transform" : "translate(0)"})
 		})
 	})
