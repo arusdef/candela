@@ -399,12 +399,28 @@ var interSubpageTransition = Barba.BaseTransition.extend({
 
 			if(window.innerWidth < 768){ 
 				$("h3").each(function(){
-					// console.log("#" + $(this).parent().attr("id"), targetId)
 					if("#" + $(this).parent().attr("id") != targetId){
 						TweenMax.to($(this), 0.4, {opacity: 0, ease: Power3.easeIn}) 
 					}
 				})
 			}
+
+			if(window.innerWidth > 768){
+				if($(".current_size_half").length > 1){
+					TweenMax.set($(".width_half"), {borderLeft: "none", borderRight: "none", borderTop: "none", borderBottom: "none"})
+					if($oldContainer.find(".width_half").next().hasClass("current_size_half")){
+						TweenMax.to($(".width_half"), 0.6, {delay: 0.4, marginLeft: 0, height: 0, marginBottom: -25})	
+					}else{
+						TweenMax.to($(".width_half"), 0.6, {delay: 0.4, marginLeft: 0, height: 0})
+					}
+					
+				}else if($(".current_size_half").length == 1){
+					TweenMax.set($(".width_half"), {borderLeft: "none", borderRight: "none"})
+					TweenMax.to($(".width_half"), 0.6, {delay: 0.4, marginLeft: 0, height: 0})
+				}
+				TweenMax.set($(".current_size_half"), {borderLeft: "none", borderRight: "none", borderTop: "none", borderBottom: "none"})
+			}
+
 			TweenMax.to($(targetId).find(".sub_fader"), 0.4, {opacity: 1, ease: Power3.easeIn})
 			TweenMax.to($(".current_section").find(".sub_fader"), 0.4, {opacity: 1, ease: Power3.easeIn})
 			TweenMax.to($(".section_carousel"), 0.4, {opacity: 0, ease: Power3.easeIn})
@@ -419,6 +435,8 @@ var interSubpageTransition = Barba.BaseTransition.extend({
 			}, 1040)
 
 			setTimeout(function(){
+				TweenMax.set($(".width_half"), {clearProps: "all"})
+				TweenMax.set($(".current_size_half"), {clearProps: "all"})
 				TweenMax.set($("h3"), {clearProps: "all"})
 				TweenMax.set($(".sub_fader"), {clearProps: "all"})
 				TweenMax.set($(".slide_button"), {clearProps: "all"})
