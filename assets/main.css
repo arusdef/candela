@@ -326,9 +326,12 @@ footer.active{
 }
 
 .footer_section:first-of-type{
-	border-right: 1px solid #ADAAAD;
 	text-align: left;
 	padding-left: 0.75rem;
+}
+
+.footer_section:nth-of-type(2){
+	border-left: 1px solid #ADAAAD;
 }
 
 .footer_section:last-of-type{
@@ -340,6 +343,10 @@ footer.active{
 	border-left: 1px solid #ADAAAD;
 }
 
+.footer_section:only-of-type{
+	border-right: none;
+	border-left: none;
+}
 
 @media(max-width: 768px){
 	#brochure_tab{
@@ -558,7 +565,7 @@ a.sliver{
 }
 
 .sliver.width_half:nth-of-type(2n){
-	border-left: 1px solid #ADAAAD;
+	border-right: 1px solid #ADAAAD;
 }
 
 h1{
@@ -755,6 +762,14 @@ h1{
 	opacity: 1;
 	background-color: white;
 }
+
+@media(min-width: 768px){
+	.small_section	.sub_fader{
+		display: none;
+	}
+}
+
+
 
 .candela_section.last_section{
 	border-bottom: none;
@@ -1275,10 +1290,14 @@ a.small_section .sub_fader{
 
 
 	.gradient{
-		width: 100vw;
+		width: 50vw;
 	}
 
-	main.seven .sliver.section_link.width_half, .sliver.section_link.width_half,
+	main.seven .sliver.section_link.width_half, .sliver.section_link.width_half{
+		width: 100%;
+	}
+	
+	/*main.seven .sliver.section_link.width_half, .sliver.section_link.width_half,*/
 	main.seven .sliver.section_link.mobile_width_half, .sliver.section_link.mobile_width_half{
 		height: 2rem;	
 		width: 100%;
@@ -1315,10 +1334,10 @@ a.small_section .sub_fader{
 		transform: rotate(90deg);
 	}
 
+	/*.section_link.width_half:after, 
+	.small_section.width_half:after,*/
 	.section_link.mobile_width_half:after, 
-	.small_section.mobile_width_half:after,
-	.section_link.width_half:after, 
-	.small_section.width_half:after{
+	.small_section.mobile_width_half:after{
 		top: 0.5rem;
 	}
 
@@ -1328,7 +1347,8 @@ a.small_section .sub_fader{
 		pointer-events: none;
 	}
 
-	.width_full	.mobile_preview{
+	.width_full	.mobile_preview,
+	.width_half	.mobile_preview{
 		display: inline-block;
 	}
 
@@ -1336,6 +1356,7 @@ a.small_section .sub_fader{
 
 	.candela_section.small_section.width_half, 
 	.candela_section.small_section.width_full,
+		.sliver.width_half,
 	.sliver.width_full{
 		width: 100%;
 		display: block;
@@ -1344,10 +1365,14 @@ a.small_section .sub_fader{
 	
 
 
-	.candela_section.small_section.width_full, .candela_section.small_section.width_full .sub_fader{ height: 6rem; }
-
+	.width_half,
+	.width_half .subfader,
 	.candela_section.small_section.width_half, 
-	.candela_section.small_section.width_half .sub_fader,
+	.candela_section.small_section.width_full, 
+	.candela_section.small_section.width_full .sub_fader{ height: 6rem; }
+
+/*	.candela_section.small_section.width_half, 
+	.candela_section.small_section.width_half .sub_fader,*/
 	.candela_section.small_section.width_full.mobile_width_half,
 	.candela_section.small_section.width_full.mobile_width_half .sub_fader{ 
 		height: 2rem; 
@@ -1362,7 +1387,8 @@ a.small_section .sub_fader{
 	} 
 
 	.small_section h3,
-	.sliver.width_full h1{
+	.sliver.width_full h1,
+	.sliver.width_half h1{
 		position: absolute;
 		padding-left: 0.75rem;
 		font-size: 1rem;
@@ -1375,7 +1401,7 @@ a.small_section .sub_fader{
 	}
 
 	.sliver.width_half:nth-of-type(2n){
-		border-left: none;
+		border-right: none;
 	}
 
 	.small_section.width_half{
@@ -1384,7 +1410,8 @@ a.small_section .sub_fader{
 
 	.sliver.width_full h1, .sliver.width_half h1{padding-left: 0;}
 
-	.width_half h3, .mobile_width_half h3, .sliver.mobile_width_half h1{
+	/*.width_half h3, */
+	.mobile_width_half h3, .sliver.mobile_width_half h1{
 		padding-top: 0.35rem;
 		max-width: calc(100% - 1.5rem);
 	}

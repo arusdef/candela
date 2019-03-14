@@ -450,12 +450,19 @@ var interSubpageTransition = Barba.BaseTransition.extend({
 			TweenMax.to($(".mobile_footer"), 0.4, {opacity: 0, ease: Power3.easeIn})
 			TweenMax.to($(".slide_button"), 0.4, {opacity: 0, ease: Power3.easeIn})
 			TweenMax.to($oldContainer.find(".mobile_preview"), 0.3, {opacity: 0, ease: Power3.easeIn})
-			TweenMax.to($oldContainer.find(".current_section"), 0.6, {delay: 0.4, height: smallSectionHeight})
+			if(window.innerWidth < 768){
+				TweenMax.to($oldContainer.find(".current_section"), 0.8, {delay: 0.4, height: smallSectionHeight})
+			}else{
+				TweenMax.to($oldContainer.find(".current_section"), 0.6, {delay: 0.4, height: smallSectionHeight})
+			}
 			TweenMax.to($oldContainer.find(targetId), 0.6, {delay: 0.4, height: targetSectionHeight})
+
+			var finished = ((window.innerWidth < 768) ? 1300 : 1040),
+					clearEverything = ((window.innerWidth < 768) ? 1240 : 1100)
 
 			setTimeout(function(){
 				_this.done(); // transition complete
-			}, 1040)
+			}, finished)
 
 			setTimeout(function(){
 				TweenMax.set($(".width_half"), {clearProps: "all"})
@@ -466,7 +473,7 @@ var interSubpageTransition = Barba.BaseTransition.extend({
 				TweenMax.set($(".mobile_preview"), {clearProps: "all"})
 				TweenMax.set($(".section_carousel"), {clearProps: "all"})
 				// TweenMax.set($(".mobile_footer"), {clearProps: "all"})
-			}, 1100)
+			}, clearEverything)
 		})
 	}
 })
@@ -536,7 +543,7 @@ window.onload = function(){
 	Site.section.init();
 	Barba.Pjax.start();
 	
-	Site.weather();
+	// Site.weather();
 	Site.footer();
 	Site.arrowNav();
 	Site.loaded = true; //update site session status

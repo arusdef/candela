@@ -81,7 +81,6 @@ columns:
           trailervisibility:
             label: Show Section
             type: toggle
-            default: true
             text:
               - Hiding
               - Showing
