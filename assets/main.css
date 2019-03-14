@@ -565,7 +565,7 @@ a.sliver{
 }
 
 .sliver.width_half:nth-of-type(2n){
-	border-right: 1px solid #ADAAAD;
+	border-left: 1px solid #ADAAAD;
 }
 
 h1{
