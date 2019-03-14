@@ -21,8 +21,10 @@ Site by Íñigo Lopez and Lukas Eigler-Harding
 - [x] slideshow bug with going previous to new
 
 - [x] half objects are relatively positioned, solved for transitions
-- [ ] half width size testing!!!
+- [x] half width size testing!!!
 
 ## mobile edits
 - [x] mobile interaction/animation for closing section
+- [x] gallery jump to bug
+- [ ] location opening
 - [ ] double click needed to open new sections?

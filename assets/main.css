@@ -526,8 +526,10 @@ main .sliver:last-of-type{
 	overflow-x: hidden;
 }
 
-.sliver:hover h1{
-	color: #C3A678;
+@media (min-width: 768px) {
+	.sliver:hover h1{
+		color: #C3A678;
+	}
 }
 
 header.seven.sliver, .seven .sliver{
@@ -537,6 +539,7 @@ header.seven.sliver, .seven .sliver{
 a.sliver{
 	text-decoration: none;
 }
+
 
 .sliver.width_full{
 	display: flex;
@@ -653,6 +656,9 @@ h1 .section_subtitle{
 	margin-bottom: 1.5rem;
 	transition: background-color 0.2s, opacity 0.2s;
 }
+
+
+
 .desktop_preview .image_wrapper:hover{
 	background-color: #C3A678;
 	opacity: 1;
@@ -672,7 +678,7 @@ h1{
 	text-align: left;
 	margin-right: 5%;
 	object-position: right middle;
-	
+	pointer-events: none;
 	object-fit: contain;
 	position: relative;
 	height: 4rem;
@@ -744,7 +750,7 @@ h1{
 	left: 0;
 	width: 100%;
 	z-index: 90000000000000;
-	user-select: none;
+	/*user-select: none;*/
 	pointer-events: none;
 	opacity: 1;
 	background-color: white;
@@ -783,8 +789,10 @@ h1{
 	height: 100%;	
 }
 
-a.small_section:hover{
-	color: #C3A678;
+@media (hover: hover) {
+	a.small_section:hover{
+		color: #C3A678;
+	}
 }
 
 .seven .current_section, .seven .current_section .subfader{
@@ -809,8 +817,10 @@ a.small_section:hover{
 	width: calc(100% - 0.75rem);
 }
 
-.current_section h1 a:hover{
-	color: #C3A678;
+@media (hover: hover) {
+	.current_section h1 a:hover{
+		color: #C3A678;
+	}
 }
 
 h2.slide_counter{
@@ -1258,8 +1268,8 @@ a.small_section .sub_fader{
 		height: 6rem;	
 	}
 
-	.sliver:hover h1{
-		color: #424142;
+	.sliver h1{
+		color: #424142 !important;
 	}
 
 
@@ -1278,6 +1288,10 @@ a.small_section .sub_fader{
 		position: relative;
 	}
 
+	/*.section_link:hover{
+		background-color: red;
+	}*/
+
 	.section_link:after, .small_section:after{
 		content: "";
 		position: absolute;
@@ -1290,9 +1304,14 @@ a.small_section .sub_fader{
 		width: 1rem;
 		height: 1rem;
 		transition: transform 0.5s;
+		pointer-events: none;
 	}
 
-	.small_section:hover:after{
+	.section_link.opening, .small_section.opening{
+		color: #C3A678;
+	}
+
+	.section_link.opening:after, .small_section.opening:after{
 		transform: rotate(90deg);
 	}
 
@@ -1306,6 +1325,7 @@ a.small_section .sub_fader{
 
 	.desktop_preview{
 		display: none;
+		pointer-events: none;
 	}
 
 	.width_full	.mobile_preview{
@@ -1333,7 +1353,6 @@ a.small_section .sub_fader{
 		height: 2rem; 
 	}
 
-
 	.small_section, .candela_section.small_section:last-of-type{
 		border-bottom: 1px solid #ADAAAD;
 	}
@@ -1357,6 +1376,10 @@ a.small_section .sub_fader{
 
 	.sliver.width_half:nth-of-type(2n){
 		border-left: none;
+	}
+
+	.small_section.width_half{
+		border-right: none;
 	}
 
 	.sliver.width_full h1, .sliver.width_half h1{padding-left: 0;}
@@ -1424,7 +1447,7 @@ a.small_section .sub_fader{
 		content: "";
 		position: absolute;
 		top: 0;
-		right: 0;
+		right: -0.2rem;
 		width: 1rem;
 		height: 1rem;
 		background-repeat: no-repeat;
@@ -1434,12 +1457,16 @@ a.small_section .sub_fader{
 		transition: transform 0.5s;
 	}
 
-	.candela_section.current_section h1.current_section_title a:hover:after{
-		transform: rotate(-90deg);
+	h1.current_section_title a:after{
+		transform: rotate(0deg);
 	}
 
-	#the-location.candela_section.current_section h1.current_section_title a:hover:after{
-		transform: rotate(0deg);
+	.candela_section.current_section.closing h1.current_section_title a{
+		color: #424142;
+	}
+
+	.candela_section.current_section.closing h1.current_section_title a:after{
+		transform: rotate(-90deg);
 	}
 
 

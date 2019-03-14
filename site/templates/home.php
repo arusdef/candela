@@ -10,7 +10,6 @@
 			?>: <span class="section_subtitle"><?= $page->sectionsubtitle()->html() ?></span>
 				<?php endif ?>
 			</h1>
-			
 			<?php if($page->sectionpreviewfull()->isNotEmpty()): ?>
 				<?php if($page->sectionpreviewfull()->toStructure()->count() > 7): ?>
 					<div class="desktop_preview lots_of_images">
@@ -28,15 +27,12 @@
 					<?php endforeach ?>
 				</div>
 			<?php endif ?>
-
 			<?php if($page->sectionpinned()->isNotEmpty()): ?>
 				<?php if($page->sectionpinned()->first()->exists()): ?>
 					<img class="mobile_preview" src="<?= $page->sectionpinned()->first()->toFile()->resize(400)->url() ?>">
 				<?php endif ?>
 			<?php endif ?>
-
-		</a
-	><?php 
+		</a><?php 
 					endif;
 				endforeach ?>
 </div>

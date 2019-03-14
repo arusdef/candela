@@ -228,6 +228,10 @@ Site.homepage = Barba.BaseView.extend({
 			Site.targetPage = (($(this).attr("id") != null || $(this).attr("id") != undefined)? $(this).attr("id") : "");
 		})
 
+		$(".section_link").on('click', function(){
+			$(this).addClass("opening")
+		})		
+
   }
 });
 
@@ -281,7 +285,12 @@ Site.section = Barba.BaseView.extend({
 			});
   	}else{
 			// scroll to on mobile
-			$("main").scrollTop($(".candela_section.current_section").index()*$(".small_section").first().outerHeight())
+			$("main").scrollTop($("main").scrollTop() + $(".candela_section.current_section").position().top)
+  		
+  		$(".small_section").on('click', function(){
+  			$(this).addClass("opening")
+  		})
+
   	}
 
   	// always initialized for window resize accounting
@@ -324,6 +333,11 @@ Site.section = Barba.BaseView.extend({
   			Site.carousel = false;
   		}
   	})
+  },
+  onLeave: function() {
+   
+  	$(".current_section").addClass("closing")
+
   }
 });
 
@@ -507,19 +521,16 @@ var homepageTransition = Barba.BaseTransition.extend({
 })
 
 window.onload = function(){
-
 	console.log("\nSite by Íñigo Lopez and Lukas Eigler-Harding\n")
 	// barba
 	Site.homepage.init();
 	Site.section.init();
 	Barba.Pjax.start();
-
+	
 	Site.weather();
 	Site.footer();
 	Site.arrowNav();
 	Site.loaded = true; //update site session status
-
-
 
 	Barba.Pjax.getTransition = function() {
 		var currentPage = $(".barba-container").attr("id");
