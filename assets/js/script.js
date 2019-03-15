@@ -543,7 +543,7 @@ window.onload = function(){
 	Site.section.init();
 	Barba.Pjax.start();
 	
-	// Site.weather();
+	Site.weather();
 	Site.footer();
 	Site.arrowNav();
 	Site.loaded = true; //update site session status
