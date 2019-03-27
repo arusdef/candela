@@ -1002,6 +1002,7 @@ h2.slide_counter{
 }
 /* used as footnote point: */
 .column_text h6{
+	margin-top: 1rem;
 	font-size: 0.75rem;
 	font-weight: normal;
 	line-height: 1rem;
