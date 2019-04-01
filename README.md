@@ -28,3 +28,9 @@ Site by Íñigo Lopez and Lukas Eigler-Harding
 - [x] gallery jump to bug
 - [ ] location opening
 - [ ] double click needed to open new sections?
+
+## bugs
+- [x] safari bug
+- [x] slideshow overlap
+- [x] mobile footer padding
+- [x] footer alignment

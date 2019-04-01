@@ -243,7 +243,7 @@ header{
 	cursor: pointer;
 	position: relative;
 	height: 2rem;
-	padding-bottom: 3.25rem;
+	padding-bottom: 4.5rem;
 	text-align: center;
 }
 
@@ -310,6 +310,11 @@ footer.active{
 	transition: background-color 0.2s, color 0.2s;
 }
 
+#contact_tab.footer_section{
+	text-align: right;
+	padding-right: 0.75rem;
+}
+
 .footer_section a{
 	display: block;
 	text-decoration: none;
@@ -326,7 +331,7 @@ footer.active{
 }
 
 .footer_section:first-of-type{
-	text-align: left;
+	/*text-align: left;*/
 	padding-left: 0.75rem;
 }
 
@@ -881,8 +886,9 @@ h2.slide_counter{
 .slide_button.previous{	left: 1rem; }
 
 .section_carousel_cell{
-	height: calc(60vh - 0.5rem);
+	height: calc(60vh - 1rem);
 	width: 100%;
+	padding-top: 0.5rem;
 	text-align: center;
 	/*overflow-y: scroll;*/
 }
@@ -1132,8 +1138,9 @@ a.small_section .sub_fader{
 		border-top: 1px solid #ADAAAD;	
 		border-left: 1px solid #ADAAAD;	
 		border-right:none;	
-
+		display: block;
 	}
+
 	/*.seven */
 	.seven .current_size_half + .small_section.width_half{
 		margin-top: calc(-3.142vh + 0.32857vw);
