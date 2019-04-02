@@ -22,7 +22,7 @@
 							<?php if($preview->targetslide()->isNotEmpty()): ?> 
 								data-target-slide="<?= $preview->targetslide()->first() ?>"
 							<?php endif ?>
-							><img src="<?= $preview->previewimage()->toFile()->resize(400)->url() ?>" ></span>
+							><img src="<?= $preview->previewimage()->toFile()->resize(400)->url() ?>" ><div class="image_wrapper_outline"></div></span>
 						<?php endif ?>
 					<?php endforeach ?>
 				</div>
