@@ -89,6 +89,12 @@ Site.footer = function(){
 		$("#trailer_tab").toggleClass("active")
 		$("main").toggleClass("video")
 
+		// pause video using vimeo player.js
+		// https://developer.vimeo.com/player/sdk/reference
+		var iframe = $("#popup_vimeo_video").find('iframe'),
+    		player = new Vimeo.Player(iframe);
+		player.pause();
+
 		setTimeout(function(){
 			$("#vimeo_video").toggleClass("show")
 			$("#vimeo_video").toggleClass("revealed")

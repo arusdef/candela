@@ -24,6 +24,7 @@
 	  'assets/js/barba.min.js',
 	  'assets/js/TweenMax.min.js',
 	  'assets/js/flickity.pkgd.min.js',
+	  'assets/js/player.js',
 	  'assets/js/script.js'
 	]) ?>
 
