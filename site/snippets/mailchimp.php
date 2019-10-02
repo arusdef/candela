@@ -17,7 +17,7 @@
 				<div class="response" id="mce-success-response" style="display:none"></div>
 			</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
 	    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_c8388ed325757d81671bf4904_dfe4278efc" tabindex="-1" value=""></div>
-	    <div class="clear"><input type="submit" value="<?= $site->contactsubscribebutton()->html()?>" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+	    <div class="clear"><input onclick="return gtag_report_conversion('http://example.com/your-link');" type="submit" value="<?= $site->contactsubscribebutton()->html()?>" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
   	</div>
 	</form>
 </div>
